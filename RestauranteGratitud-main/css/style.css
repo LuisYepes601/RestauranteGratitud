@@ -291,10 +291,147 @@ body {
 }
 
 .main-nuestros-platos-contenido {
-    background-color: #ECFAE5;
+    background-color: white;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 1rem;
+    padding: 2rem;
+
+
+}
+
+.plato-detalle {
+
+    border: solid .1rem #008a00;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    gap: 1rem;
+    transition: transform .5s;
+
+
+}
+
+.plato-detalle:hover {
+    transform: scale(1.1);
+}
+
+.plato-detalle-titulo {
+    font-weight: 700;
+    color: #292525;
+}
+
+.plato-detalle-precio {
+    color: #008a00;
+    font-weight: 600;
+}
+
+.plato-descripcion {
+    color: #4d4143;
+    font-weight: 300;
+}
+
+.plato-detalle-botones {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.plato-detalle-botones-add-car {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+
+
+
+.add-car-btn {
+    display: flex;
+    gap: .5rem;
+    border-radius: .7rem;
+    padding: .7rem;
+    color: white;
+    background-color: #008a00;
+    border: solid .2rem white;
+    transition: border .7s, background-color .7s, color .7s;
+    cursor: pointer;
+    border: solid .2rem white;
+    transition: border .5s, background-color .5s, color .5s;
+
+
+}
+
+.add-car-btn:hover {
+    border: solid .2rem #008a00;
+    background-color: white;
+    color: #008a00;
+}
+
+.plato-detalle-cantidad {
+
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    color: #008a00;
+    padding: .5rem;
+
+}
+
+.cantidad-producto {
+    width: 20%;
+    border: solid .2rem #008a00;
+    transition: border .5s, color .5s;
+    border-radius: 20px;
+    padding: .2rem;
+
+
+
+}
+
+.cantidad-producto:hover {
+    border: solid .2rem #4d4143;
+    color: #008a00;
+}
+
+.plato-detalle-cantidad-titulo {
+    font-size: small;
+    color: #008a00;
+    font-weight: 500;
+}
+
+.plato-detalle-botones-show-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row-reverse;
+    gap: 1rem;
+    padding: .3rem;
+    border-radius: 20px;
+    border: solid .2rem #008a00;
+    background-color: white;
+    color: #008a00;
+    cursor: pointer;
+    transition: color .5s, background-color .5s;
+    margin-top: 1.5rem;
+}
+
+.plato-detalle-botones-show-details:hover {
+
+    background-color: #008a00;
+    color: white;
+
+}
+
+.plato-detalle-botones-show-details i {
+    font-size: 1rem;
 }
 
 
