@@ -17,24 +17,12 @@ const main_presentacion = document.querySelector(".main-presentacion");
 const btn_sobre_nosoros = document.getElementById("btn-sobre-nosoros");
 
 
-function MostralPlatos() {
-
-
-}
-
 
 btn_muestros_platos.addEventListener("click", (e) => {
     e.preventDefault();
     main_presentacion.style.display = "none"
 })
-MostralPlatos();
 
-const btn_mostrar_menu = document.getElementById("btn_mostrarPlatos");
-btn_mostrar_menu.addEventListener("click", (e) => {
-    e.preventDefault();
-    MostralPlatos();
-
-})
 
 const platosDesdeAPI = [
     { id: 1, titulo: "Pizza", imagen: "https://images.app.goo.gl/ybNpkEEXyhgHU1ScA", precio: 12000, descripcion: "Deliciosa pizza con ingredientes frescos y masa artesanal." },
@@ -59,6 +47,7 @@ const platosDesdeAPI = [
     { id: 20, titulo: "Helado de Frutas", imagen: "img/helado.jpg", precio: 6000, descripcion: "Helado artesanal de mango, fresa y piña." }
 ];
 const add_car_btn = document.querySelectorAll(".add-car-btn");
+
 
 
 //cargar platpos al inicio
@@ -95,7 +84,7 @@ function cargarPlatosHome() {
                                     </div>
                                 </div>
 
-                                <button class="plato-detalle-botones-show-details">Ver Detalles <i
+                                <button class="plato-detalle-botones-show-details" data-id="${plato.id}">Ver Detalles <i
                                         class="bi bi-eye-fill"></i></button>
                             </div>
                         </div> `;
@@ -106,13 +95,28 @@ function cargarPlatosHome() {
 
     });
 
-    const botonesAgregard = document.querySelectorAll(".add-car-btn");
+    const botonesMostarDetalles = document.querySelectorAll(".plato-detalle-botones-show-details");
 
-    botonesAgregard.forEach(btn => {
+    botonesMostarDetalles.forEach(btn => {
         btn.addEventListener("click", (e) => {
-            console.log(e.target.getAttribute("data-id"))
-            mostrarDetallesPlato();
+            plato = e.target.getAttribute("data-id");
+            mostrarDetallesPlato(plato);
+
+
         })
+    });
+
+    const btn_menu_home = document.querySelector(".main-presentacion-descipcion-btn-ver-menu");
+
+    btn_menu_home.addEventListener("click", () => {
+
+        nuestrosPlatos();
+
+        window.scrollTo({
+            top: document.body.scrollHeight * 0.15 ,
+            behavior: "smooth"
+        });
+
     });
 
 
@@ -126,6 +130,7 @@ cargarPlatosHome();
 
 //mostrar platos secion nuestros platos
 function nuestrosPlatos() {
+
 
 
     const contenedor_platos = document.querySelector(".main-nuestros-platos-contenido");
@@ -156,7 +161,7 @@ function nuestrosPlatos() {
                                     </div>
                                 </div>
 
-                                <button class="plato-detalle-botones-show-details">Ver Detalles <i
+                                <button class="plato-detalle-botones-show-details" data-id = "${plato.id}">Ver Detalles <i
                                         class="bi bi-eye-fill"></i></button>
                             </div>
                         </div> `;
@@ -170,9 +175,20 @@ function nuestrosPlatos() {
 
     });
 
+    const botonesMostarDetalles = document.querySelectorAll(".plato-detalle-botones-show-details");
+
+    botonesMostarDetalles.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            plato = e.target.closest("button").getAttribute("data-id");
+            mostrarDetallesPlato(plato);
+            main_presentacion.style.display = "block";
+            
 
 
-    main_presentacion.style.display = "none";
+        })
+    });
+
+
 
 
 }
@@ -183,23 +199,51 @@ btn_muestros_platos.addEventListener("click", () => {
 })
 
 
-function mostrarDetallesPlato() {
+function mostrarDetallesPlato(plato) {
+
+    let platoActual = platosDesdeAPI.find(platos => platos.id === Number(plato))
 
     main_presentacion.innerHTML = "";
 
     let DetallesPlato = `
-    <div class="main-presentacion-descipcion">
-                    <h2 class="main-presentacion-descipcion-titulo"> Detalles del plato
-                    </h2>
-                    <p class="main-presentacion-descipcion-subtitulo">Sabores únicos y frescos que te harán sentir bien
-                        por dentro y por fuera. Descubre un menú creado para cuidarte sin renunciar al placer.</p>
-                    <button class="main-presentacion-descipcion-btn-ver-menu"><i class="bi bi-book-half"></i>Ver
-                        Menú</button>
+    <section class="main-presentacion-ver-detalles">
+    <div class="main-detalle-plato">
+                    <h2 class="main-detalle-plato-nombre">Hamburguesa</h2>
+                    <p class="main-detalle-plato-descripcion">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                        Porro eaque error excepturi beatae amet cum alias repellat optio voluptas, vel non fugiat
+                        aliquid est dolorum totam neque ducimus! Debitis, odit.</p>
+                    <p class="plato-detalle-precio">Precio: $ 12.000</p>
+
+                    <ul class="plato-detalle-atributos">
+                        <li><strong>Sabor:</strong> Jugoso, con un toque ahumado y ligeramente picante.</li>
+                        <li><strong>Textura:</strong> Crujiente por fuera y suave por dentro.</li>
+                        <li><strong>Presentación:</strong> Acompañada con papas fritas y ensalada fresca.</li>
+                        <li><strong>Porción:</strong> 1 unidad grande.</li>
+                        <li><strong>Peso:</strong> Aproximadamente 250 gramos.</li>
+                    </ul>
+
+                    <div class="plato-detalle-botones-add-car plato-detalle-botones-add-car-ver-detalles">
+                        <button class="add-car-btn" data-id="${plato}">Agregar al Carrito<i class="bi bi-bag-plus-fill"></i></button>
+                        <div class="plato-detalle-cantidad">
+                            <input type="number" name="" id="" class="cantidad-producto" min="1" step="1" value="1">
+                            <p class="plato-detalle-cantidad">Cantidad</p>
+                        </div>
+                    </div>
+
                 </div>
-                <img src="img/hamburguesa.jpg" alt="" class="hamburguesa">
+
+                <img src="img/hamburguesa.jpg" alt="" class="hamburguesa hamburguesa-ver-detalles">
+                   </section>
+
     `
 
     main_presentacion.insertAdjacentHTML("beforeend", DetallesPlato)
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
 }
 
 
