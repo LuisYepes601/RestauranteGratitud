@@ -13,6 +13,12 @@
 
 }
 
+body,
+html {
+    position: relative;
+    height: 100%;
+}
+
 a {
     text-decoration: none;
 }
@@ -224,7 +230,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding: 2rem;
+
 }
 
 .main-presentacion-descipcion-titulo {
@@ -252,7 +258,7 @@ body {
 
 .hamburguesa:hover {
 
-    width: 415px;
+    width: 400px;
     transform: translate(30px, 15px);
 }
 
@@ -450,7 +456,7 @@ body {
     flex-direction: column;
     justify-content: center;
     gap: 3rem;
-    
+
 
 }
 
@@ -576,6 +582,7 @@ body {
 }
 
 /*SECCION DETTALLES PLATO*/
+
 .main-presentacion-ver-detalles {
     display: flex;
     justify-content: center;
@@ -630,10 +637,7 @@ body {
     justify-content: center;
 }
 
-.hamburguesa-ver-detalles {
-
-
-}
+.hamburguesa-ver-detalles {}
 
 .hamburguesa-ver-detalles:hover {
 
@@ -642,5 +646,215 @@ body {
 
 }
 
+/*Carrito de compras*/
+
+.carrito-contenedor {
+    background-color: #f1f3f5;
+    position: fixed;
+    top: 23%;
+    overflow: auto;
+    height: 100%;
+    height: 78vh;
+    width: 35%;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-right: .5rem solid #e0e0e0;
+    /*display: none;*/
 
 
+
+}
+
+.carrito-general-contenido {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+
+
+
+
+}
+
+.carrito-general-contenido hr {
+
+    margin-top: 2rem;
+    height: 3px;
+    background-color: #008a00;
+    border: none;
+
+}
+
+.carrito-contenedor-presentacion {
+
+    display: flex;
+    gap: 5rem;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.carrito-contenedor-presentacion-btn-salir {
+
+    border: none;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    color: #4d4143;
+    font-weight: 600;
+    font-size: .9rem;
+}
+
+.carrito-contenedor-presentacion-btn-salir i {
+    font-size: 1.3rem;
+    color: #008a00;
+
+    transition: color .5s, transform .3s;
+}
+
+.carrito-contenedor-presentacion-btn-salir i:hover {
+    transform: scale(.9);
+    color: #b14444;
+}
+
+.carrito-contenedor-articulo {
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: flex-start;
+    justify-content: center;
+    color: #4d4143;
+    background-color: white;
+    padding: 1rem 2rem;
+    border-radius: 20px;
+}
+
+.carrito-contenedor-articulo-presentacion {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.carrito-contenedor-articulo-descripcion {
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+
+}
+
+.carrito-contenedor-articulo-descripcion strong {
+    color: #008a00;
+}
+
+.carrito-contenedor-articulo-precio-detalles {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1rem 0;
+
+}
+
+.carrito-contenedor-articulo-precio,
+.carrito-contenedor-articulo-cantidad,
+.carrito-contenedor-articulo-delete {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .5rem;
+    align-items: center;
+
+}
+
+.carrito-contenedor-articulo-precio p {
+    color: #008a00;
+    font-weight: 800;
+}
+
+.carrito-contenedor-articulo-cantidad input {
+    border: solid.1rem #008a00;
+    border-radius: 20px;
+    padding: .15rem;
+    width: 40%;
+}
+
+.carrito-contenedor-btn-delete {
+    padding: .5rem;
+    border: solid .1rem white;
+    background-color: transparent;
+}
+
+.carrito-contenedor-btn-delete i {
+    font-size: 1.5rem;
+    color: rgb(235, 109, 109);
+    transition: color .5s, font-size .3s;
+    cursor: pointer;
+
+}
+
+.carrito-contenedor-btn-delete i:hover {
+    color: red;
+    font-size: 1.8rem;
+}
+
+.carrito-contenedor-pedidos {
+    display: flex;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+}
+
+.carrito-contenedor-pedidos-btn-vaciar,
+.carrito-contenedor-pedidos-btn-realizar-pedido {
+    padding: 1rem;
+    border-radius: 20px;
+    border: solid .2rem white;
+    background-color: #008a00;
+    color: white;
+    transition: color .5s, border .5s, background-color .5s, transform .5s;
+    cursor: pointer;
+
+}
+
+.carrito-contenedor-pedidos-btn-vaciar:hover,
+.carrito-contenedor-pedidos-btn-realizar-pedido:hover {
+    border: solid .2rem #008a00;
+    background-color: white;
+    color: #4d4143;
+    transform: scale(.9);
+
+
+}
+
+/*CARRITO VACIO*/
+.carrito-contenedor-vacio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.carrito-contenedor-vacio-imagen {
+    width: 200px;
+    max-width: 100%;
+}
+
+.carrito-contenedor-vacio-titulo strong {
+    font-size: 1.5rem;
+    color: #008a00;
+}
+
+.carrito-contenedor-vacio-titulo {
+    color: #4d4143;
+}

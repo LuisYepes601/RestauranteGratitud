@@ -99,8 +99,10 @@ function cargarPlatosHome() {
 
     botonesMostarDetalles.forEach(btn => {
         btn.addEventListener("click", (e) => {
+            e.preventDefault();
             plato = e.target.getAttribute("data-id");
             mostrarDetallesPlato(plato);
+
 
 
         })
@@ -108,12 +110,12 @@ function cargarPlatosHome() {
 
     const btn_menu_home = document.querySelector(".main-presentacion-descipcion-btn-ver-menu");
 
-    btn_menu_home.addEventListener("click", () => {
-
+    btn_menu_home.addEventListener("click", (e) => {
+        e.preventDefault();
         nuestrosPlatos();
 
         window.scrollTo({
-            top: document.body.scrollHeight * 0.15 ,
+            top: document.body.scrollHeight * 0.15,
             behavior: "smooth"
         });
 
@@ -134,6 +136,9 @@ function nuestrosPlatos() {
 
 
     const contenedor_platos = document.querySelector(".main-nuestros-platos-contenido");
+
+
+
 
     contenedor_platos.innerHTML = "";
 
@@ -175,18 +180,28 @@ function nuestrosPlatos() {
 
     });
 
+
+
     const botonesMostarDetalles = document.querySelectorAll(".plato-detalle-botones-show-details");
+
 
     botonesMostarDetalles.forEach(btn => {
         btn.addEventListener("click", (e) => {
             plato = e.target.closest("button").getAttribute("data-id");
             mostrarDetallesPlato(plato);
             main_presentacion.style.display = "block";
-            
+
+
 
 
         })
     });
+
+
+
+    agregarCarrito();
+
+
 
 
 
@@ -244,8 +259,137 @@ function mostrarDetallesPlato(plato) {
         behavior: "smooth"
     });
 
+
 }
 
+let carritoDeCompras = [{ id: 1 }];
+
+
+function agregarCarrito() {
+    const btn_carrito = document.querySelectorAll(".add-car-btn");
+    const carrito = document.querySelector(".carrito-general-contenido");
+    const carritoj = document.querySelector(".carrito-contenedor");
+    const btn_vaciar_pedido = document.querySelector(".carrito-contenedor-pedidos-btn-vaciar");
+    const btn_realizar_pedido = document.querySelector(".carrito-contenedor-pedidos-btn-realizar-pedido");
+    const carrito_vacio = document.querySelector(".carrito-contenedor-vacio");
+
+    if (carritoDeCompras.length === 0) {
+
+        btn_vaciar_pedido.style.display = "none";
+        btn_realizar_pedido.style.display = "none";
+
+    } else {
+        btn_vaciar_pedido.style.display = "block";
+        btn_realizar_pedido.style.display = "block";
+        carrito_vacio.style.display = "none";
+        mostrarCarrito();
+
+
+        btn_carrito.forEach(btn => {
+
+
+            btn.addEventListener("click", (e) => {
+                carritoDeCompras.forEach(plato => {
+                    if (Number(plato.id) === Number(e.target.getAttribute("data-id"))) {
+                        plato.id = "n";
+                        plato.id = "hhhh";
+                        mostrarCarrito();
+                    } else {
+                        
+                    }
+                });
+
+
+
+
+
+
+            })
+        });
+
+
+    }
+
+
+
+
+
+
+
+}
+agregarCarrito();
+
+
+
+function mostrarCarrito() {
+
+    const carrito = document.querySelector(".carrito-contenedor");
+
+    carrito.style.display = "block";
+    carritoDeCompras.forEach(plato => {
+
+        let producto = `
+              <div class="carrito-contenedor-articulo">
+                <div class="carrito-contenedor-articulo-presentacion">
+                    <h3 class="carrito-contenedor-articulo-nombre">${plato.id}</h3>
+                    <img src="img/hamburguesa.jpg" alt="" style="width: 100px;"
+                        class="carrito-contenedor-articulo-imagen">
+                </div>
+                <p class="carrito-contenedor-articulo-descripcion"><strong>Descripción</strong>Lorem ipsum dolor sit
+                    amet
+                    consectetur adipisicing elit. Fugiat eos, voluptates porro quo commodi, eaque sit sint unde ea fuga
+                </p>
+                <div class="carrito-contenedor-articulo-precio-detalles">
+                    <div class="carrito-contenedor-articulo-precio">
+
+                        <h4 class="carrito-contenedor-articulo-precio-titulo">Precio:</h4>
+                        <p class="carrito-contenedor-articulo-precio-item">$12.000</p>
+                    </div>
+
+                    <div class="carrito-contenedor-articulo-cantidad">
+                        <h4>Cantidad</h4><input type="number" name="" id="" step="1" min="1">
+
+                    </div>
+                    <div class="carrito-contenedor-articulo-delete">
+                        <button class="carrito-contenedor-btn-delete"><i class="bi bi-trash-fill"></i></button>
+                    </div>
+
+                </div>
+
+
+            </div>`
+
+        carrito.insertAdjacentHTML("beforeend", producto);
+
+    });
+
+
+}
+
+
+function salirCarrito() {
+    const btn_salir = document.querySelector(".carrito-contenedor-presentacion-btn-salir");
+    const carrito = document.querySelector(".carrito-contenedor");
+
+    btn_salir.addEventListener("click", (e) => {
+        e.preventDefault();
+        carrito.style.display = "none";
+    })
+
+
+
+}
+salirCarrito();
+
+const btn_home = document.querySelector(".btn_home");
+
+btn_home.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+})
 
 
 
