@@ -3,6 +3,8 @@ const header_nav = document.getElementById("header_nav_mas_opciones");
 const btn_menu = document.getElementById("btn_menu_header");
 //const header_nav_lista = document.getElementById("header_nav_lista");
 
+let carritoDeCompras = [];
+
 
 //mostrarHeadrerlateral
 btn_menu.addEventListener("click", () => {
@@ -123,8 +125,7 @@ function cargarPlatosHome() {
 
 
 
-
-
+    agregarCarrito();
 
 }
 cargarPlatosHome();
@@ -143,6 +144,7 @@ function nuestrosPlatos() {
     contenedor_platos.innerHTML = "";
 
     platosDesdeAPI.forEach(plato => {
+
 
 
         let contenedor_platos_actual = `  
@@ -221,13 +223,13 @@ function mostrarDetallesPlato(plato) {
     main_presentacion.innerHTML = "";
 
     let DetallesPlato = `
-    <section class="main-presentacion-ver-detalles">
+     <section class="main-presentacion-ver-detalles">
     <div class="main-detalle-plato">
                     <h2 class="main-detalle-plato-nombre">Hamburguesa</h2>
                     <p class="main-detalle-plato-descripcion">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                         Porro eaque error excepturi beatae amet cum alias repellat optio voluptas, vel non fugiat
                         aliquid est dolorum totam neque ducimus! Debitis, odit.</p>
-                    <p class="plato-detalle-precio">Precio: $ 12.000</p>
+                    <p class="plato-detalle-precio">Precio: $ ${platoActual.precio}</p>
 
                     <ul class="plato-detalle-atributos">
                         <li><strong>Sabor:</strong> Jugoso, con un toque ahumado y ligeramente picante.</li>
@@ -238,7 +240,7 @@ function mostrarDetallesPlato(plato) {
                     </ul>
 
                     <div class="plato-detalle-botones-add-car plato-detalle-botones-add-car-ver-detalles">
-                        <button class="add-car-btn" data-id="${plato}">Agregar al Carrito<i class="bi bi-bag-plus-fill"></i></button>
+                        <button class="add-car-btn" data-id="${platoActual.id}">Agregar al Carrito<i class="bi bi-bag-plus-fill"></i></button>
                         <div class="plato-detalle-cantidad">
                             <input type="number" name="" id="" class="cantidad-producto" min="1" step="1" value="1">
                             <p class="plato-detalle-cantidad">Cantidad</p>
@@ -252,7 +254,10 @@ function mostrarDetallesPlato(plato) {
 
     `
 
-    main_presentacion.insertAdjacentHTML("beforeend", DetallesPlato)
+    main_presentacion.insertAdjacentHTML("beforeend", DetallesPlato);
+
+
+
 
     window.scrollTo({
         top: 0,
@@ -260,9 +265,35 @@ function mostrarDetallesPlato(plato) {
     });
 
 
+    const btn_add_car = document.querySelector(".add-car-btn");
+    btn_add_car.addEventListener("click", (e) => {
+        let id_plato = e.target.getAttribute("data-id");
+
+        let platoCarrito = carritoDeCompras.find(plato => Number(plato.id) === Number(id_plato))
+        let plato = platosDesdeAPI.find(plato => Number(plato.id) === Number(id_plato))
+        let plato_contenedor = e.target.closest(".plato-detalle-botones-add-car");
+        let input_cantidad = plato_contenedor.querySelector(".cantidad-producto").value;
+        let input_cantidad_contenedor = plato_contenedor.querySelector(".cantidad-producto")
+
+
+
+
+        if (platoCarrito) {
+            platoCarrito.cantidad += Number(input_cantidad);
+            platoCarrito.precio = plato.precio * Number(input_cantidad)
+            mostrarCarrito();
+            input_cantidad_contenedor.value = 1;
+            return;
+
+        } else {
+            carritoDeCompras.push({ id: plato.id, precio: plato.precio * Number(input_cantidad), cantidad: Number(input_cantidad) });
+            mostrarCarrito();
+        }
+
+
+    })
 }
 
-let carritoDeCompras = [{ id: 1 }];
 
 
 function agregarCarrito() {
@@ -273,43 +304,111 @@ function agregarCarrito() {
     const btn_realizar_pedido = document.querySelector(".carrito-contenedor-pedidos-btn-realizar-pedido");
     const carrito_vacio = document.querySelector(".carrito-contenedor-vacio");
 
-    if (carritoDeCompras.length === 0) {
-
-        btn_vaciar_pedido.style.display = "none";
-        btn_realizar_pedido.style.display = "none";
-
-    } else {
-        btn_vaciar_pedido.style.display = "block";
-        btn_realizar_pedido.style.display = "block";
-        carrito_vacio.style.display = "none";
-        mostrarCarrito();
 
 
-        btn_carrito.forEach(btn => {
+
+    btn_carrito.forEach(btn => {
 
 
-            btn.addEventListener("click", (e) => {
-                carritoDeCompras.forEach(plato => {
-                    if (Number(plato.id) === Number(e.target.getAttribute("data-id"))) {
-                        plato.id = "n";
-                        plato.id = "hhhh";
-                        mostrarCarrito();
-                    } else {
-                        
-                    }
+        btn.addEventListener("click", (e) => {
+
+
+            id_producto = e.target.getAttribute("data-id");
+            const cantidad_producto = e.target.closest(".plato-detalle-botones").querySelector(".cantidad-producto").value;
+            const plato = platosDesdeAPI.find(plato => Number(plato.id) === Number(id_producto));
+            exixteProducto = carritoDeCompras.find(plato => Number(plato.id) === Number(id_producto));
+
+
+
+
+            if (exixteProducto) {
+                exixteProducto.cantidad = Number(cantidad_producto);
+                exixteProducto.precio = plato.precio * exixteProducto.cantidad;
+                mostrarCarrito();
+
+
+                return;
+
+            } else {
+                carritoDeCompras.push({ id: id_producto, cantidad: Number(cantidad_producto), precio: plato.precio * cantidad_producto });
+                mostrarCarrito();
+
+
+
+            }
+
+
+
+
+
+
+
+            let total;
+
+
+            if (carritoDeCompras.length === 0) {
+                alert("fff")
+            } else {
+                carritoDeCompras.forEach(element => {
+                 alert(element.cantidad)
                 });
 
+            }
+            console.log(Number(total))
+
+        })
+    });
+
+    const inputsCantidad = document.querySelectorAll(".cantidad-producto");
+
+    inputsCantidad.forEach(input => {
+        input.addEventListener("input", (e) => {
+            const cantidad = Number(e.target.value);
+            const cantidad_input = Number(e.target.value)
+            const id_producto = e.target.closest(".plato-detalle-botones").querySelector(".add-car-btn").getAttribute("data-id");
+            const plato = platosDesdeAPI.find(plato => Number(plato.id) === Number(id_producto));
+            const exixteProducto = carritoDeCompras.find(plato => Number(plato.id) === Number(id_producto));
+
+            if (exixteProducto) {
+                exixteProducto.cantidad = cantidad;
+                exixteProducto.precio = plato.precio * cantidad;
 
 
 
+            } else if (cantidad > 0) {
+                carritoDeCompras.push({ id: id_producto, cantidad: cantidad, precio: plato.precio * cantidad });
+            }
 
+            mostrarCarrito();
 
-            })
         });
+    });
 
 
-    }
 
+
+    document.addEventListener("input", (e) => {
+        if (e.target.classList.contains("carrito-input-cantidad")) {
+            const cantidadValue = Number(e.target.value);
+            const id_producto = e.target.closest(".carrito-contenedor-articulo-cantidad").getAttribute("data-id");
+
+            const platoActual = platosDesdeAPI.find(plato => Number(plato.id) === Number(id_producto));
+            const platoexiste = carritoDeCompras.find(plato => Number(plato.id) === Number(id_producto));
+
+            if (platoexiste) {
+
+                platoexiste.cantidad = cantidadValue;
+                const precioUnitario = platoActual.precio;
+                platoexiste.precio = precioUnitario * cantidadValue;
+
+                mostrarCarrito();
+
+
+            }
+
+
+        }
+    });
 
 
 
@@ -317,13 +416,62 @@ function agregarCarrito() {
 
 
 }
+
 agregarCarrito();
+
+
+
+
+function eliminarProductoCarrito(id_plato) {
+
+    //plato = platosDesdeAPI.find(plato => Number(plato.id) === Number(id_plato));
+    carritoDeCompras = carritoDeCompras.filter(producto => Number(producto.id) !== Number(id_plato));
+
+    mostrarCarrito();
+
+}
 
 
 
 function mostrarCarrito() {
 
     const carrito = document.querySelector(".carrito-contenedor");
+
+
+
+    carrito.innerHTML = ` <div class="carrito-general-contenido">
+            <div class="carrito-contenedor-presentacion">
+                <h2 class="carrito-contenedor-titulo">Carrito de Compras</h2>
+                <button class="carrito-contenedor-presentacion-btn-salir"><i
+                        class="bi bi-x-circle-fill"></i>Salir</button>
+            </div>
+
+            
+            <div class="carrito-contenedor-vacio">
+                <img src="img/carro-vacio.png" alt="" class="carrito-contenedor-vacio-imagen">
+                <h3 class="carrito-contenedor-vacio-titulo"><strong>Tu carrito está vacío... </strong><br>¡es hora de llenarlo con sabor!</h3>
+            </div>
+
+            <div class="carrito-contenedor-pedidos">
+                <button class="carrito-contenedor-pedidos-btn-vaciar">Vaciar carrito</button>
+                <button class="carrito-contenedor-pedidos-btn-realizar-pedido">Realizar Pedido</button>
+            </div>
+        </div>`;
+
+    const btn_vaciar_pedido = document.querySelector(".carrito-contenedor-pedidos-btn-vaciar");
+    const btn_realizar_pedido = document.querySelector(".carrito-contenedor-pedidos-btn-realizar-pedido");
+    const carrito_vacio = document.querySelector(".carrito-contenedor-vacio");
+
+
+    if (carritoDeCompras.length === 0) {
+
+        btn_vaciar_pedido.style.display = "none";
+        btn_realizar_pedido.style.display = "none";
+    } else {
+        carrito_vacio.style.display = "none";
+        btn_vaciar_pedido.style.display = "block";
+        btn_realizar_pedido.style.display = "block";
+    }
 
     carrito.style.display = "block";
     carritoDeCompras.forEach(plato => {
@@ -343,15 +491,15 @@ function mostrarCarrito() {
                     <div class="carrito-contenedor-articulo-precio">
 
                         <h4 class="carrito-contenedor-articulo-precio-titulo">Precio:</h4>
-                        <p class="carrito-contenedor-articulo-precio-item">$12.000</p>
+                        <p class="carrito-contenedor-articulo-precio-item">$${plato.precio}</p>
                     </div>
 
-                    <div class="carrito-contenedor-articulo-cantidad">
-                        <h4>Cantidad</h4><input type="number" name="" id="" step="1" min="1">
+                    <div class="carrito-contenedor-articulo-cantidad " data-id="${plato.id}">
+                        <h4>Cantidad</h4><input type="number" name="" id="" step="1" min="1" value ="${plato.cantidad}" class="carrito-input-cantidad">
 
                     </div>
                     <div class="carrito-contenedor-articulo-delete">
-                        <button class="carrito-contenedor-btn-delete"><i class="bi bi-trash-fill"></i></button>
+                        <button class="carrito-contenedor-btn-delete" data-id ="${plato.id}"><i class="bi bi-trash-fill"></i></button>
                     </div>
 
                 </div>
@@ -361,10 +509,143 @@ function mostrarCarrito() {
 
         carrito.insertAdjacentHTML("beforeend", producto);
 
+
+
+
+
+
+    });
+
+    let pedido_total = `  <div class="carrito-contenedor-precio-total">
+                <h2 class="total-pagar-titulo">Total a Pagar</h2>
+                <p class="total-pagar-cantidad">$: 100000 </p>
+            </div>`
+
+    carrito.insertAdjacentHTML("beforeend", pedido_total);
+
+    const btn_delete_plato = document.querySelectorAll(".carrito-contenedor-btn-delete");
+    btn_delete_plato.forEach(plato => {
+
+        plato.addEventListener("click", (e) => {
+            const boton = e.target.closest(".carrito-contenedor-btn-delete");
+            if (boton) {
+                const id_plato = boton.getAttribute("data-id");
+                eliminarProductoCarrito(id_plato);
+            }
+
+
+        })
     });
 
 
+
+    salirCarrito();
+    vaciarCarrito();
+
 }
+
+
+
+
+
+
+/* function agregarCarrito() {
+    const btn_carrito = document.querySelectorAll(".add-car-btn");
+    const carrito = document.querySelector(".carrito-general-contenido");
+    const carritoj = document.querySelector(".carrito-contenedor");
+    const btn_vaciar_pedido = document.querySelector(".carrito-contenedor-pedidos-btn-vaciar");
+    const btn_realizar_pedido = document.querySelector(".carrito-contenedor-pedidos-btn-realizar-pedido");
+    const carrito_vacio = document.querySelector(".carrito-contenedor-vacio");
+
+
+
+
+    btn_carrito.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+
+            id_producto = e.target.getAttribute("data-id");
+            alert(id_producto)
+
+            const productoExiste = carritoDeCompras.find(plato => Number(plato.id) === Number(id_producto));
+            const cantidad_producto = 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        })
+    });
+
+    const inputsCantidad = document.querySelectorAll(".cantidad-producto");
+
+    inputsCantidad.forEach(input => {
+        input.addEventListener("input", (e) => {
+            const cantidad = Number(e.target.value);
+            const id_producto = e.target.closest(".plato-detalle-botones").querySelector(".add-car-btn").getAttribute("data-id");
+            const plato = platosDesdeAPI.find(plato => Number(plato.id) === Number(id_producto));
+            const exixteProducto = carritoDeCompras.find(plato => Number(plato.id) === Number(id_producto));
+
+            if (exixteProducto) {
+                exixteProducto.cantidad = cantidad;
+                exixteProducto.precio = plato.precio * cantidad;
+            } else if (cantidad > 0) {
+                carritoDeCompras.push({ id: id_producto, cantidad: cantidad, precio: plato.precio * cantidad });
+            }
+
+            mostrarCarrito();
+        });
+    });
+
+
+
+
+    document.addEventListener("input", (e) => {
+        if (e.target.classList.contains("carrito-input-cantidad")) {
+            const cantidadValue = Number(e.target.value);
+            const id_producto = e.target.closest(".carrito-contenedor-articulo-cantidad").getAttribute("data-id");
+
+            const platoActual = platosDesdeAPI.find(plato => Number(plato.id) === Number(id_producto));
+            const platoexiste = carritoDeCompras.find(plato => Number(plato.id) === Number(id_producto));
+
+            if (platoexiste) {
+
+                platoexiste.cantidad = cantidadValue;
+                const precioUnitario = platoActual.precio;
+                platoexiste.precio = precioUnitario * cantidadValue;
+
+                mostrarCarrito();
+
+
+            }
+
+
+        }
+    });
+
+
+
+
+
+} */
+
+
+
+
+
+
+
 
 
 function salirCarrito() {
@@ -390,6 +671,30 @@ btn_home.addEventListener("click", (e) => {
         behavior: "smooth"
     });
 })
+
+
+const btn_mostrarCarrito = document.querySelector(".btn_mostrar-carrito");
+
+btn_mostrarCarrito.addEventListener("click", (e) => {
+    e.preventDefault();
+    mostrarCarrito();
+    vaciarCarrito();
+})
+
+
+function vaciarCarrito() {
+    const btn_vaciar_carrito = document.querySelector(".carrito-contenedor-pedidos-btn-vaciar");
+    btn_vaciar_carrito.addEventListener("click", () => {
+        carritoDeCompras = [];
+        mostrarCarrito();
+    });
+
+}
+
+
+
+
+
 
 
 

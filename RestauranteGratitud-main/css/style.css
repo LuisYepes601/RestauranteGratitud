@@ -662,7 +662,7 @@ body {
     align-items: flex-start;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-right: .5rem solid #e0e0e0;
-    /*display: none;*/
+    display: none;
 
 
 
@@ -857,4 +857,24 @@ body {
 
 .carrito-contenedor-vacio-titulo {
     color: #4d4143;
+}
+
+.carrito-contenedor-precio-total {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    gap: 1rem;
+    padding: 2rem 0;
+}
+
+.total-pagar-titulo {
+    color: #4d4143;
+}
+
+.total-pagar-cantidad {
+
+    color: #008a00;
 }
