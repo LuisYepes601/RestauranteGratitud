@@ -278,6 +278,7 @@ function mostrarDetallesPlato(plato) {
 
 
 
+
         if (platoCarrito) {
             platoCarrito.cantidad += Number(input_cantidad);
             platoCarrito.precio = plato.precio * Number(input_cantidad)
@@ -343,20 +344,13 @@ function agregarCarrito() {
 
 
 
-            let total;
 
 
-            if (carritoDeCompras.length === 0) {
-                alert("fff")
-            } else {
-                carritoDeCompras.forEach(element => {
-                 alert(element.cantidad)
-                });
 
-            }
-            console.log(Number(total))
+
 
         })
+       
     });
 
     const inputsCantidad = document.querySelectorAll(".cantidad-producto");
@@ -414,6 +408,9 @@ function agregarCarrito() {
 
 
 
+    carritoDeCompras.forEach(element => {
+        alert(element.id)
+    });
 
 }
 
@@ -684,9 +681,19 @@ btn_mostrarCarrito.addEventListener("click", (e) => {
 
 function vaciarCarrito() {
     const btn_vaciar_carrito = document.querySelector(".carrito-contenedor-pedidos-btn-vaciar");
+
     btn_vaciar_carrito.addEventListener("click", () => {
         carritoDeCompras = [];
         mostrarCarrito();
+
+        setTimeout(() => {
+            const contenedor_total_pagar = document.querySelector(".carrito-contenedor-precio-total");
+            if (contenedor_total_pagar) {
+                contenedor_total_pagar.style.display = "none";
+            }
+        }, 0);
+
+
     });
 
 }
