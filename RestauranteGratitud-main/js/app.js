@@ -304,7 +304,7 @@ function agregarCarrito() {
     const btn_vaciar_pedido = document.querySelector(".carrito-contenedor-pedidos-btn-vaciar");
     const btn_realizar_pedido = document.querySelector(".carrito-contenedor-pedidos-btn-realizar-pedido");
     const carrito_vacio = document.querySelector(".carrito-contenedor-vacio");
-
+    let total = 0;
 
 
 
@@ -318,6 +318,14 @@ function agregarCarrito() {
             const cantidad_producto = e.target.closest(".plato-detalle-botones").querySelector(".cantidad-producto").value;
             const plato = platosDesdeAPI.find(plato => Number(plato.id) === Number(id_producto));
             exixteProducto = carritoDeCompras.find(plato => Number(plato.id) === Number(id_producto));
+
+            if (carritoDeCompras.length > 0) {
+                let total = 0;
+                carritoDeCompras.forEach(item => {
+                    total += item.precio;
+                });
+                alert("Total del carrito: $" + total);
+            }
 
 
 
@@ -337,6 +345,20 @@ function agregarCarrito() {
 
 
             }
+            setTimeout(() => {
+                if (carritoDeCompras.length > 0) {
+                    let total = 0;
+                    carritoDeCompras.forEach(item => {
+                        total += item.precio;
+                    });
+                    let total_pagar_cantidad = document.querySelector(".total-pagar-cantidad")
+                    total_pagar_cantidad.innerHTML = total;
+                    let total_pagar = document.querySelector(".carrito-contenedor-precio-total").style.display = "flex"
+
+                }
+            }, 1);
+
+
 
 
 
@@ -350,7 +372,7 @@ function agregarCarrito() {
 
 
         })
-       
+
     });
 
     const inputsCantidad = document.querySelectorAll(".cantidad-producto");
@@ -372,6 +394,27 @@ function agregarCarrito() {
             } else if (cantidad > 0) {
                 carritoDeCompras.push({ id: id_producto, cantidad: cantidad, precio: plato.precio * cantidad });
             }
+
+            if (carritoDeCompras.length > 0) {
+                let total = 0;
+                carritoDeCompras.forEach(item => {
+                    total += item.precio;
+                });
+                let total_pagar_cantidad = document.querySelector(".total-pagar-cantidad")
+
+
+                setTimeout(() => {
+                    if (carritoDeCompras.length > 0) {
+                        let total = 0;
+                        carritoDeCompras.forEach(item => {
+                            total += item.precio;
+                        });
+                        let total_pagar_cantidad = document.querySelector(".total-pagar-cantidad")
+                        total_pagar_cantidad.innerHTML = `$: ${total}`;
+                    }
+                }, 1);
+            }
+
 
             mostrarCarrito();
 
