@@ -324,7 +324,7 @@ function agregarCarrito() {
                 carritoDeCompras.forEach(item => {
                     total += item.precio;
                 });
-                alert("Total del carrito: $" + total);
+
             }
 
 
@@ -336,11 +336,10 @@ function agregarCarrito() {
                 mostrarCarrito();
 
 
-                return;
-
             } else {
                 carritoDeCompras.push({ id: id_producto, cantidad: Number(cantidad_producto), precio: plato.precio * cantidad_producto });
                 mostrarCarrito();
+
 
 
 
@@ -356,7 +355,7 @@ function agregarCarrito() {
                     let total_pagar = document.querySelector(".carrito-contenedor-precio-total").style.display = "flex"
 
                 }
-            }, 1);
+            }, 100);
 
 
 
@@ -410,11 +409,12 @@ function agregarCarrito() {
                             total += item.precio;
                         });
                         let total_pagar_cantidad = document.querySelector(".total-pagar-cantidad")
-                        total_pagar_cantidad.innerHTML = `$: ${total}`;
-                    }
-                }, 1);
-            }
+                        total_pagar_cantidad.innerHTML = total;
+                        let total_pagar = document.querySelector(".carrito-contenedor-precio-total").style.display = "flex"
 
+                    }
+                }, 100);
+            }
 
             mostrarCarrito();
 
@@ -425,6 +425,7 @@ function agregarCarrito() {
 
 
     document.addEventListener("input", (e) => {
+
         if (e.target.classList.contains("carrito-input-cantidad")) {
             const cantidadValue = Number(e.target.value);
             const id_producto = e.target.closest(".carrito-contenedor-articulo-cantidad").getAttribute("data-id");
@@ -442,6 +443,23 @@ function agregarCarrito() {
 
 
             }
+
+
+
+
+            setTimeout(() => {
+                if (carritoDeCompras.length > 0) {
+                    let total = 0;
+                    carritoDeCompras.forEach(item => {
+                        total += item.precio;
+                    });
+                    let total_pagar_cantidad = document.querySelector(".total-pagar-cantidad")
+                    total_pagar_cantidad.innerHTML = total;
+                    let total_pagar = document.querySelector(".carrito-contenedor-precio-total").style.display = "flex"
+
+                }
+            }, 100);
+
 
 
         }
