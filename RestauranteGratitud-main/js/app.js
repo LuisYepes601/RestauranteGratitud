@@ -596,7 +596,7 @@ function mostrarCarrito() {
     });
 
 
-
+    realizarPedido();
     salirCarrito();
     vaciarCarrito();
 
@@ -757,7 +757,24 @@ function vaciarCarrito() {
 
     });
 
+
+ 
+
 }
+
+   function realizarPedido() {
+
+        const btn_realizar_pedido = document.querySelector(".carrito-contenedor-pedidos-btn-realizar-pedido");
+
+        btn_realizar_pedido.addEventListener("click", () => {
+            carritoDeCompras.forEach(plato => {
+                console.log(plato);
+                
+            });
+           
+        })
+
+    }
 
 
 
