@@ -283,13 +283,28 @@ function mostrarDetallesPlato(plato) {
 
         if (platoCarrito) {
             platoCarrito.cantidad += Number(input_cantidad);
-            platoCarrito.precio = plato.precio * Number(input_cantidad)
+            platoCarrito.precio += plato.precio * Number(input_cantidad)
             mostrarCarrito();
-            input_cantidad_contenedor.value = 1;
+            
+            localStorage.setItem("carrito", JSON.stringify(carritoDeCompras));
+
+            setTimeout(() => {
+                if (carritoDeCompras.length > 0) {
+                    let total = 0;
+                    carritoDeCompras.forEach(item => {
+                        total += item.precio * item.cantidad;
+                    });
+                    let total_pagar_cantidad = document.querySelector(".total-pagar-cantidad")
+                    total_pagar_cantidad.innerHTML = total;
+                    let total_pagar = document.querySelector(".carrito-contenedor-precio-total").style.display = "flex"
+
+                }
+            }, 100);
             return;
 
         } else {
             carritoDeCompras.push({ id: plato.id, precio: plato.precio * Number(input_cantidad), cantidad: Number(input_cantidad) });
+            localStorage.setItem("carrito", JSON.stringify(carritoDeCompras));
             mostrarCarrito();
         }
 
@@ -599,6 +614,18 @@ function mostrarCarrito() {
 
         })
     });
+    setTimeout(() => {
+        if (carritoDeCompras.length > 0) {
+            let total = 0;
+            carritoDeCompras.forEach(item => {
+                total += item.precio;
+            });
+            let total_pagar_cantidad = document.querySelector(".total-pagar-cantidad")
+            total_pagar_cantidad.innerHTML = `$: ${total}`
+            let total_pagar = document.querySelector(".carrito-contenedor-precio-total").style.display = "flex"
+
+        }
+    }, 100);
 
 
     realizarPedido();
@@ -773,23 +800,26 @@ function vaciarCarrito() {
     });
 
 
- 
+
 
 }
 
-   function realizarPedido() {
+function realizarPedido() {
 
-        const btn_realizar_pedido = document.querySelector(".carrito-contenedor-pedidos-btn-realizar-pedido");
+    const btn_realizar_pedido = document.querySelector(".carrito-contenedor-pedidos-btn-realizar-pedido");
 
-        btn_realizar_pedido.addEventListener("click", () => {
-            carritoDeCompras.forEach(plato => {
-                console.log(plato);
-                
-            });
-           
-        })
+    btn_realizar_pedido.addEventListener("click", () => {
+        carritoDeCompras.forEach(plato => {
+            console.log(plato);
 
-    }
+        });
+
+
+        window.location.href = "pedido.html";
+
+    })
+
+}
 
 
 
