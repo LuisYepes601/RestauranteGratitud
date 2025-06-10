@@ -27,14 +27,11 @@
 
             <nav class="header_nav " id="header_nav">
                 <ul class="header_nav_lista " id="header_nav_lista">
-                    <li class="header_nav_lista_items"><a href="" class="btn_home"><i class="bi bi-house-door-fill"></i>
+                    <li class="header_nav_lista_items"><a href="index.html" class="btn_home"><i
+                                class="bi bi-house-door-fill"></i>
                             <p>Home</p>
                         </a></li>
-                    <li class="header_nav_lista_items"><a href="" id="btn_mostrarPlatos"><i
-                                class="bi bi-fork-knife"></i>
-                            <p>Nuestros Platos</p>
-                        </a>
-                    </li>
+
                     <li class="header_nav_lista_items"><a href=""><i class="bi bi-people-fill"></i>
                             <p>Sobre
                                 Nosotros</p>
@@ -54,7 +51,7 @@
             </nav>
             <nav class="header_nav">
                 <ul class="header_nav_lista">
-                    <li class="header_nav_lista_items"><a href="login.html"><i class="bi bi-box-arrow-in-right"></i>
+                    <li class="header_nav_lista_items"><a href=""><i class="bi bi-box-arrow-in-right"></i>
                             <p>Login</p>
                         </a></li>
                     <li class="header_nav_lista_items"><a href="" class="btn_mostrar-carrito"><i
@@ -62,7 +59,7 @@
                             <p>Carrito</p>
                         </a>
                     </li>
-                    <li class="header_nav_lista_items"> <a href="pedido.html"><i class="bi bi-bag-plus-fill"></i>
+                    <li class="header_nav_lista_items"> <a href=""><i class="bi bi-bag-plus-fill"></i>
                             <p>Hacer pedido</p>
                         </a>
                     </li>
@@ -84,8 +81,9 @@
                         <hr class="separador-lista-rol">
                     </li>
 
-                    <li class="header_nav_lista_items"> <a href=""><i class="bi bi-bag-plus-fill"></i>
-                            <p>Hacer pedido</p>
+                    <li class="header_nav_lista_items"> <a href="pedido.html" target="_blank"><i
+                                class="bi bi-bag-plus-fill"></i>
+                            <p>Hacer pedido </p>
                         </a>
 
                     </li>
@@ -132,22 +130,24 @@
 
         <main class="main">
 
-            <section class="main-presentacion">
 
-                <div class="main-presentacion-descipcion">
-                    <h2 class="main-presentacion-descipcion-titulo"> Disfruta de una experiencia culinaria exquisita
-                    </h2>
-                    <p class="main-presentacion-descipcion-subtitulo">Sabores únicos y frescos que te harán sentir bien
-                        por dentro y por fuera. Descubre un menú creado para cuidarte sin renunciar al placer.</p>
-                    <button class="main-presentacion-descipcion-btn-ver-menu"><i class="bi bi-book-half"></i>Ver
-                        Menú</button>
-                </div>
-                <img src="img/hamburguesa.jpg" alt="" class="hamburguesa">
-            </section>
 
-            <section class="main-nuestros-platos">
-                <h2 class="main-nuestros-platos-titulo">Nuestros Platos</h2>
-                <div class="main-nuestros-platos-contenido">
+            <section class="main-registro">
+
+                <img src="img/cala-w6ftFbPCs9I-unsplash.jpg" alt="" class="main-registro-imagen">
+
+                <div class="main-registro-contenido">
+                    <h2 class="main-registro-titulo">Registrarse</h2>
+
+                    <form id="form-registro">
+                        <input type="email" id="email" placeholder="Correo electrónico" required>
+                        <input type="password" id="password" placeholder="Contraseña" required>
+                        <div class="btn-registrar">
+                        <button type="submit" class="main-registro-btn-resgistrarse">Registrarse</button>
+                        </div>
+                        <p class="main-registro-contenido-inciciar-sesion">¿tienes una cuenta? <a href="registro.html"><i
+                                    class="bi bi-arrow-right-circle"></i>Inicia sesión aquí</a></p>
+                    </form>
                 </div>
 
             </section>
@@ -169,7 +169,8 @@
                         <li class="footer_nav-enlaces"><a href="#">Nuestros Platos<i class="bi bi-fork-knife"></i></a>
                         </li>
                         <li class="footer_nav-enlaces"><a href="#">Sobre Nosotros<i
-                                    class="bi bi-info-circle-fill"></i></a></li>
+                                    class="bi bi-info-circle-fill"></i></a>
+                        </li>
                         <li class="footer_nav-enlaces"><a href="#">Contáctanos<i class="bi bi-telephone-fill"></i></a>
                         </li>
                         <li class="footer_nav-enlaces"><a href="#">Recetas<i class="bi bi-book-half"></i></a></li>

@@ -663,7 +663,7 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-right: .5rem solid #e0e0e0;
     display: none;
-    
+
 
 
 
@@ -696,7 +696,7 @@ body {
     gap: 5rem;
     justify-content: space-between;
     align-items: center;
- 
+
 
 }
 
@@ -847,7 +847,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
+
 
 }
 
@@ -884,4 +884,162 @@ body {
 .total-pagar-cantidad {
 
     color: #008a00;
+}
+
+/*LOGUIN*/
+
+.main-login {
+
+    background-image: url("https://images.unsplash.com/photo-1497250681960-ef046c08a56e?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    backdrop-filter: brightness(0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 6rem 3rem;
+}
+
+.main-login-titulo {
+    margin-bottom: 1rem;
+    font-size: 2.6rem;
+    color: white;
+
+}
+
+#formLogin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    width: 30%;
+}
+
+.main-login input {
+    width: 100%;
+    padding: 1.4rem;
+    border-radius: 25px;
+    margin-top: 1rem;
+    border: none;
+}
+
+.mensaje-registro {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 700;
+
+}
+
+.mensaje-registro a {
+    color: white;
+    font-weight: 600;
+    display: flex;
+    gap: 1rem;
+}
+
+.main-login-btn-entrar {
+    padding: 1rem;
+    border-radius: 20px;
+    border: none;
+    width: 50%;
+    background-color: #008a00;
+    color: white;
+    font-size: 1rem;
+}
+
+/*REGISTRO*/
+
+.main-registro {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1.5rem 3rem;
+    gap: 2rem;
+}
+
+.main-registro-imagen {
+    width: 600px;
+    max-width: 100%;
+}
+
+
+
+.main-registro-contenido {
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+    gap: 3rem;
+
+}
+
+.main-registro form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+
+}
+
+.main-registro form input {
+    padding: 1rem;
+    border-radius: 20px;
+    border: solid 1px rgb(82, 74, 74);
+    width: 100%;
+}
+
+.main-registro-contenido-inciciar-sesion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.main-registro-contenido-inciciar-sesion a {
+    display: flex;
+
+    gap: .5rem;
+    color: #008a00;
+    font-weight: 800;
+    font-size: 1rem;
+}
+
+.main-registro-btn-resgistrarse {
+    border-radius: 20px;
+    padding: 1rem;
+    background-color: #008a00;
+    border: solid 1px #008a00;
+    color: white;
+    font-size: 1rem;
+    width: 50%;
+    transition:  background-color .5s , color .5s;
+    cursor: pointer;
+
+}.main-registro-btn-resgistrarse:hover{
+    background-color: white;
+    color: #008a00;
+}
+
+.btn-registrar {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-registro-contenido-inciciar-sesion a i {
+
+    
 }
