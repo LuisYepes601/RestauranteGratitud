@@ -967,6 +967,7 @@ body {
 .main-registro-imagen {
     width: 600px;
     max-width: 100%;
+    height: auto;
 }
 
 
@@ -976,8 +977,8 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
-
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
     gap: 3rem;
 
 }
@@ -986,7 +987,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: 2rem;
     width: 100%;
 
@@ -997,6 +998,13 @@ body {
     border-radius: 20px;
     border: solid 1px rgb(82, 74, 74);
     width: 100%;
+}
+
+.tipo_de_identificacion {
+    padding: .5rem;
+    border: solid 1px rgb(82, 74, 74);
+    border-radius: 25px;
+
 }
 
 .main-registro-contenido-inciciar-sesion {
@@ -1016,30 +1024,54 @@ body {
     font-size: 1rem;
 }
 
-.main-registro-btn-resgistrarse {
-    border-radius: 20px;
-    padding: 1rem;
-    background-color: #008a00;
-    border: solid 1px #008a00;
-    color: white;
-    font-size: 1rem;
-    width: 50%;
-    transition:  background-color .5s , color .5s;
-    cursor: pointer;
 
-}.main-registro-btn-resgistrarse:hover{
-    background-color: white;
-    color: #008a00;
-}
 
 .btn-registrar {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: center;
+
 }
 
-.main-registro-contenido-inciciar-sesion a i {
+.main-registro-btn-resgistrarse {
 
-    
+    padding: .8rem;
+    border-radius: 25px;
+    width: 50%;
+    background-color: #008a00;
+    color: white;
+    font-size: 1rem;
+    border: 1px solid #008a00;
+    transition: color .5s, background-color .5s;
+    cursor: pointer;
+
+}
+
+.main-registro-btn-resgistrarse:hover {
+
+    color: #008a00;
+    background-color: white;
+
+}
+
+.direccion {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.direccion select {
+
+    padding: .5rem;
+    border: solid 1px rgb(82, 74, 74);
+    border-radius: 25px;
+}
+
+.main-registro-contenido-inciciar-sesion a i {}
+
+.contenedor-verificar-sesion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
