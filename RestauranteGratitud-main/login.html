@@ -106,7 +106,7 @@
                     </li>
 
                     <li class="header_nav_lista_items">
-                        <hr class="separador-lista-rol"> <a href=""><i class="bi bi-door-closed-fill"></i>
+                        <hr class="separador-lista-rol"> <a href="" class="btn-logout"><i class="bi bi-door-closed-fill"></i>
                             <p>Cerrar Sesión </p>
                         </a>
 
@@ -130,15 +130,16 @@
 
         <main class="main">
 
-           
+
             <section class="main-login">
-                 <h2 class="main-login-titulo">Inciciar Sesión</h2>
+                <h2 class="main-login-titulo">Inciciar Sesión</h2>
 
                 <form id="formLogin">
-                    <input type="email" id="email" placeholder="Correo electrónico" required>
-                    <input type="password" id="password" placeholder="Contraseña" required>
+                    <input type="email" id="email" placeholder="Correo electrónico" required class="inp-email">
+                    <input type="password" id="password" placeholder="Contraseña" required class="inp-contraseña">
                     <button type="submit" class="main-login-btn-entrar">Entrar</button>
-                    <p class="mensaje-registro">¿No tienes una cuenta? <a href="registro.html"><i class="bi bi-arrow-right-circle"></i>Regístrate aquí</a></p>
+                    <p class="mensaje-registro">¿No tienes una cuenta? <a href="registro.html"><i
+                                class="bi bi-arrow-right-circle"></i>Regístrate aquí</a></p>
                 </form>
 
                 <p id="mensaje-error" style="color: red; display: none;">Credenciales incorrectas</p>
@@ -233,7 +234,9 @@
         </div>
 
     </section>
+    
 
+    
     <script src="js/app.js"></script>
 </body>
 

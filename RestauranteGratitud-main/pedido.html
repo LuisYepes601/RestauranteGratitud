@@ -51,7 +51,8 @@
             </nav>
             <nav class="header_nav">
                 <ul class="header_nav_lista">
-                    <li class="header_nav_lista_items"><a href=""><i class="bi bi-box-arrow-in-right"></i>
+                    <li class="header_nav_lista_items"><a href="" class="btn-login"><i
+                                class="bi bi-box-arrow-in-right"></i>
                             <p>Login</p>
                         </a></li>
                     <li class="header_nav_lista_items"><a href="" class="btn_mostrar-carrito"><i
@@ -106,7 +107,8 @@
                     </li>
 
                     <li class="header_nav_lista_items">
-                        <hr class="separador-lista-rol"> <a href=""><i class="bi bi-door-closed-fill"></i>
+                        <hr class="separador-lista-rol"> <a href="" class="btn-logout"><i
+                                class="bi bi-door-closed-fill"></i>
                             <p>Cerrar Sesión </p>
                         </a>
 
@@ -130,7 +132,70 @@
 
         <main class="main">
 
-            <section class="main-presentacion">
+            <section class="main-presentacion-pedido">
+
+                <h2>Mis pedidos</h2>
+
+
+                <div class="pedido-info">
+
+                    <div class="pedido-info-general">
+                        <h3>Información General</h3>
+                        <p><strong>ID del pedido:</strong> <span id="pedido-id"></span></p>
+                        <p><strong>Fecha:</strong> <span id="pedido-fecha"></span></p>
+                        <p><strong>Total:</strong> $<span id="pedido-total"></span></p>
+                    </div>
+
+
+                    <div class="lista-detalle">
+                        <h3>Detalles</h3>
+                        <div class="lista-detalle-contenido">
+                            <div class="lista-detalle-presentacion">
+
+                                <h4>Hamburguesa</h4>
+                                <img src="img/hamburguesa.jpg" alt="" style="width: 100px;">
+
+
+                            </div>
+
+                            <div class="lista-detalle-cantidad">
+                                <label for="cantidad">Cantidad</label>
+                                <input type="text" placeholder="Cantidad" name="cantidad">
+                                <label for="cantidad">Precio</label>
+                                <input type="text" placeholder="Precio" name="precio">
+                                <label for="Sub-total">Sub-total</label>
+                                <input type="text" placeholder="Sub-total" name="Sub-total">
+                            </div>
+                        </div>
+
+                        <div class="lista-detalle-contenido">
+                            <div class="lista-detalle-presentacion">
+
+                                <h4>Hamburguesa</h4>
+                                <img src="img/hamburguesa.jpg" alt="" style="width: 100px;">
+
+
+                            </div>
+
+                            <div class="lista-detalle-cantidad">
+                                <label for="cantidad">Cantidad</label>
+                                <input type="text" placeholder="Cantidad" name="cantidad">
+                                <label for="cantidad">Precio</label>
+                                <input type="text" placeholder="Precio" name="precio">
+                                <label for="Sub-total">Sub-total</label>
+                                <input type="text" placeholder="Sub-total" name="Sub-total">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+
+                </div>
 
 
 
@@ -223,6 +288,8 @@
         </div>
 
     </section>
+
+
 
     <script src="js/app.js"></script>
 </body>

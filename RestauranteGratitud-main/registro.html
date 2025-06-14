@@ -106,7 +106,7 @@
                     </li>
 
                     <li class="header_nav_lista_items">
-                        <hr class="separador-lista-rol"> <a href=""><i class="bi bi-door-closed-fill"></i>
+                        <hr class="separador-lista-rol"> <a href="" class="btn-logout"><i class="bi bi-door-closed-fill"></i>
                             <p>Cerrar Sesión </p>
                         </a>
 
@@ -140,39 +140,46 @@
                     <h2 class="main-registro-titulo">Registrarse</h2>
 
                     <form id="form-registro">
-                        <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
-                        <input type="text" id="apellido_p" name="apellido_p" placeholder="Apellido paterno" required>
-                        <input type="text" id="apellido_m" name="apellido_m" placeholder="Apellido materno" required>
-                        <input type="email" id="gmail" name="gmail" placeholder="Correo electrónico" required>
-                        <input type="password" id="contrasenia" name="contrasenia" placeholder="Contraseña" required>
-                        <input type="tel" id="telefono" name="telefono" placeholder="Teléfono" required>
+                        <input type="text" id="nombre" name="nombre" placeholder="Nombre" required autocomplete="off">
+                        <input type="text" id="apellido_p" name="apellido_p" placeholder="Apellido paterno" required
+                            autocomplete="off">
+                        <input type="text" id="apellido_m" name="apellido_m" placeholder="Apellido materno" required
+                            autocomplete="off">
+                        <input type="email" id="gmail" name="gmail" placeholder="Correo electrónico" required
+                            autocomplete="off">
+                        <input type="password" id="contrasenia" name="contrasenia" placeholder="Contraseña" required
+                            autocomplete="off">
+                        <input type="tel" id="telefono" name="telefono" placeholder="Teléfono" required
+                            autocomplete="off">
                         <select name="tipo_de_identificacion" required class="tipo_de_identificacion">
                             <option value="">Seleccione tipo de documento</option>
                             <option value="CC">Cédula De Ciudadania</option>
                             <option value="CE">Cédula de extranjería</option>
                             <option value="PAS">Pasaporte</option>
-                            <option value="OTRO">Otro</option>
+                            <option value="OTRO">Otro</option autocomplete="off">
                         </select>
-                        <input type="text" id="numero_dni" name="numero_dni" placeholder="Número de documento" required>
-                        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                        <input type="text" id="numero_dni" name="numero_dni" placeholder="Número de documento" required
+                            autocomplete="off">
+                        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required autocomplete="off">
 
                         <div class="direccion">
-                            <select name="pais" required>
+                            <select name="pais" required class="contenedor-paises">
                                 <option value="">Seleccione país</option>
 
                             </select>
 
-                            <select name="departamento" required>
+                            <select name="departamento" required class="contenedor-departamentos">
                                 <option value="">Seleccione Departamento</option>
 
                             </select>
 
-                            <select name="ciudad" required>
+                            <select name="ciudad" required class="contenedor-ciudades-municipios">
                                 <option value="">Seleccione Ciudad o Municipio</option>
 
                             </select>
 
-                            <input type="text" name="barrio" placeholder="Barrio / Localidad (opcional)">
+                            <input type="text" name="barrio" placeholder="Barrio / Localidad (opcional)"
+                                autocomplete="off">
                         </div>
 
                         <div class="btn-registrar">

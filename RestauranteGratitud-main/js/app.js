@@ -63,7 +63,7 @@ async function cargarPlatosHome() {
                         <div class="plato-detalle" data-id="${plato.id}">
 
                             <h3 class="plato-detalle-titulo">${plato.nombre}</h3>
-                            <img src="${plato.imagen}" alt="">
+                            <img src="${plato.imagen}" alt="" class="plato-detalle-imagen" >
                             <p class="plato-detalle-precio">Precio: $ ${plato.precio}</p>
                             <div class="plato-detalle-descripcion">
                                 <p class="plato-descripcion">${plato.descripcion}</p>
@@ -82,7 +82,9 @@ async function cargarPlatosHome() {
                                 <button class="plato-detalle-botones-show-details" data-id="${plato.id}">Ver Detalles <i
                                         class="bi bi-eye-fill"></i></button>
                             </div>
-                        </div> `;
+                        </div> 
+                        
+                        `;
 
             contenedor_platos.insertAdjacentHTML("beforeend", contenedor_platos_actual);
 
@@ -116,7 +118,7 @@ async function cargarPlatosHome() {
             nuestrosPlatos();
 
             window.scrollTo({
-                top: document.body.scrollHeight * 0.15,
+                top: document.body.scrollHeight * 0.35,
                 behavior: "smooth"
             });
 
@@ -285,7 +287,7 @@ function mostrarDetallesPlato(plato) {
             platoCarrito.cantidad += Number(input_cantidad);
             platoCarrito.precio += plato.precio * Number(input_cantidad)
             mostrarCarrito();
-            
+
             localStorage.setItem("carrito", JSON.stringify(carritoDeCompras));
 
             setTimeout(() => {
@@ -504,6 +506,7 @@ function eliminarProductoCarrito(id_plato) {
 
     //plato = platosDesdeAPI.find(plato => Number(plato.id) === Number(id_plato));
     carritoDeCompras = carritoDeCompras.filter(producto => Number(producto.id) !== Number(id_plato));
+    localStorage.setItem("carrito", JSON.stringify(carritoDeCompras))
 
     mostrarCarrito();
 
@@ -514,8 +517,6 @@ function eliminarProductoCarrito(id_plato) {
 function mostrarCarrito() {
 
     const carrito = document.querySelector(".carrito-contenedor");
-
-
 
 
     carrito.innerHTML = ` <div class="carrito-general-contenido">
@@ -542,6 +543,8 @@ function mostrarCarrito() {
     const carrito_vacio = document.querySelector(".carrito-contenedor-vacio");
 
 
+
+
     if (carritoDeCompras.length === 0) {
 
         btn_vaciar_pedido.style.display = "none";
@@ -555,6 +558,8 @@ function mostrarCarrito() {
     carrito.style.display = "block";
     carritoDeCompras.forEach(plato => {
         const plato_desde_api = platosDesdeAPI.find(plato_actual => Number(plato_actual.id) === Number(plato.id));
+  
+        
 
         let producto = `
               <div class="carrito-contenedor-articulo">
@@ -820,6 +825,464 @@ function realizarPedido() {
     })
 
 }
+
+/**
+ * REGISTRO
+ */
+
+
+async function cargarPaises() {
+    const contenedor_paises = document.querySelector(".contenedor-paises");
+    if (!contenedor_paises) {
+        // No hacer nada si no existe el contenedor (posiblemente otro HTML)
+        return;
+    }
+
+    try {
+        const response = await fetch("https://restcountries.com/v3.1/all?fields=name,capital,flags");
+        const data = await response.json();
+
+        const paises = data.sort((a, b) =>
+            a.name.common.localeCompare(b.name.common)
+        );
+
+        paises.forEach(pais => {
+            const option = document.createElement("option");
+            option.value = pais.name.common;
+            option.textContent = pais.name.common;
+            contenedor_paises.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Error al cargar los países:", error);
+    }
+}
+
+// Espera a que el DOM cargue, y solo ejecuta si hay contenedor de países
+document.addEventListener("DOMContentLoaded", cargarPaises);
+async function cargarDepartamentos() {
+    const contenedor_dptos = document.querySelector(".contenedor-departamentos");
+
+    // Validación para evitar error si el contenedor no existe
+    if (!contenedor_dptos) {
+        return; // No hace nada si no existe (es otro HTML)
+    }
+
+    try {
+        const response = await fetch("https://api-colombia.com/api/v1/Department?sortBy=name&sortDirection=asc");
+        const data = await response.json();
+
+        data.forEach(dpto => {
+            const option = document.createElement("option");
+            option.value = dpto.name;
+            option.textContent = dpto.name;
+            contenedor_dptos.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Error al cargar departamentos:", error);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", cargarDepartamentos);
+
+async function cargarCiudadesMunicipios() {
+    const contenedor_ciudades = document.querySelector(".contenedor-ciudades-municipios");
+
+    // Validación para evitar errores si no existe el contenedor
+    if (!contenedor_ciudades) {
+        return;
+    }
+
+    try {
+        const response = await fetch("https://api-colombia.com/api/v1/City?sortBy=name&sortDirection=asc");
+        const data = await response.json();
+
+        data.forEach(ciudad => {
+            const option = document.createElement("option");
+            option.value = ciudad.name;
+            option.textContent = ciudad.name;
+            contenedor_ciudades.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Error al cargar ciudades o municipios:", error);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", cargarCiudadesMunicipios);
+
+
+
+/**
+ * 
+ * PERFIL
+ */
+async function caragarDatosUsuarioByID() {
+    try {
+        const user = JSON.parse(localStorage.getItem("credenciales"));
+
+        if (user == null) {
+            return;
+        }
+
+        const id_user = user.id;
+
+
+
+
+        const response = await fetch("http://localhost:8081/registrar/get/user/ByiD/" + id_user);
+        const data = await response.json();
+
+        const setInputValue = (selector, value) => {
+            const input = document.querySelector(selector);
+            if (input) input.value = value;
+        };
+
+        setInputValue('input[name="name"]', data.nombre);
+        setInputValue('input[name="apellido_p"]', data.apellidoP);
+        setInputValue('input[name="apellido_m"]', data.apellidoM);
+        setInputValue('input[name="fecha_nacimiento"]', data.fechaNacimiento);
+        setInputValue('input[name="registro"]', data.fechaRegistro);
+        setInputValue('input[name="correo"]', data.gmail);
+        setInputValue('input[name="telefono"]', data.telefono);
+        setInputValue('input[name="tipo_de_identificacion"]', data.tipoIdentificacion?.nombre);
+        setInputValue('input[name="numero_dni"]', data.numeroDni);
+        setInputValue('input[name="pais"]', data.direccion?.pais);
+        setInputValue('input[name="departamento"]', data.direccion?.departamento);
+        setInputValue('input[name="ciudad"]', data.direccion?.ciudad);
+        setInputValue('input[name="barrio"]', data.direccion?.barrio);
+
+    } catch (error) {
+        console.error("Error al cargar los datos del usuario:", error);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", caragarDatosUsuarioByID);
+
+
+
+function IniciarSesion() {
+    const btn_enviar = document.querySelector(".main-login-btn-entrar");
+    const email = document.querySelector(".inp-email");
+    const contraseña = document.querySelector(".inp-contraseña");
+
+    // Verificamos que los elementos existan
+    if (!btn_enviar || !email || !contraseña) {
+        console.warn("Algunos elementos del formulario de login no están presentes en este HTML.");
+        return;
+    }
+
+    btn_enviar.addEventListener("click", async (e) => {
+        e.preventDefault();
+        try {
+            const credenciales = {
+                email: email.value,
+                password: contraseña.value
+            };
+
+            const response = await fetch("http://localhost:8081/login/verificarCredenciales", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(credenciales)
+            });
+
+            if (!response.ok) {
+                throw new Error("Credenciales incorrectas o error en el servidor");
+            }
+
+            const data = await response.json();
+            console.log("Respuesta del servidor:", data);
+
+            localStorage.setItem("email", credenciales.email);
+            localStorage.setItem("credenciales", JSON.stringify(data))
+
+            window.location.href = "index.html";
+            window.addEventListener('load', () => {
+                window.scrollTo(0, 0);
+            });
+
+
+
+
+
+        } catch (error) {
+            console.error("Error en inicio de sesión:", error.message);
+            alert("Error al iniciar sesión: " + error.message);
+        }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    IniciarSesion();
+});
+
+/**
+ * 
+ * REGISTRO
+ */
+
+async function registrarUsuario() {
+
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("form-registro");
+
+        if (!form) {
+            return;
+        }
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const credenciales = {
+                nombre: document.getElementById("nombre").value,
+                apellidoP: document.getElementById("apellido_p").value,
+                apellidoM: document.getElementById("apellido_m").value,
+                gmail: document.getElementById("gmail").value,
+                contrasenia: document.getElementById("contrasenia").value,
+                telefono: document.getElementById("telefono").value,
+                tipoIdentificacionId: document.querySelector(".tipo_de_identificacion").value,
+                numeroDni: document.getElementById("numero_dni").value,
+                fechaNacimiento: document.getElementById("fecha_nacimiento").value,
+                pais: document.querySelector(".contenedor-paises").value,
+                departamento: document.querySelector(".contenedor-departamentos").value,
+                ciudad: document.querySelector(".contenedor-ciudades-municipios").value,
+                barrio: document.querySelector("input[name='barrio']").value || "",
+                fechaRegistro: new Date().toISOString().split("T")[0] // YYYY-MM-DD
+            };
+
+            try {
+                const response = await fetch("http://localhost:8081/registrar/usuario", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(credenciales)
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    alert("Registro exitoso");
+
+
+                    window.location.replace("login.html");
+                } else {
+                    const error = await response.text();
+                    console.error("Error:", error);
+                    alert("No se pudo registrar el usuario.");
+                }
+            } catch (error) {
+                console.error("Error de red:", error);
+                alert("No se pudo conectar al servidor.");
+            }
+        });
+    });
+
+
+
+}
+
+registrarUsuario();
+
+//verifica si hay una cuenta abierta, si no hay no muestra el boton cerrar sesion
+
+function cerrarSesion() {
+
+
+    const btn_logout = document.querySelector(".btn-logout");
+
+    if (btn_logout == null) {
+        return;
+    }
+
+    const email = localStorage.getItem("email");
+
+    // Ocultar botón si no hay sesión
+    if (email == null) {
+        btn_logout.style.display = "none";
+    }
+
+    btn_logout.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const emailActual = localStorage.getItem("email");
+
+        if (emailActual != null) {
+
+
+
+            localStorage.clear();
+            window.location.href = "login.html"
+
+
+        }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", cerrarSesion);
+
+
+
+//verifica si hay una cuenta abierta, si no hay no muestra el boton login
+
+
+function ocultarLogin() {
+    console.log("Se ejecutó ocultarLogin");
+
+    const btn_login = document.querySelector(".btn-login");
+    const email = localStorage.getItem("email");
+
+    console.log(email);
+
+
+
+    if (email != null) {
+        btn_login.style.display = "none";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", ocultarLogin)
+
+
+//verifica si hay una cuenta abierta, si no hay no muestra el boton perfil
+
+function ocultarMiPerfil() {
+
+    const btn_perfil = document.querySelector(".btn-perfil");
+    const email = localStorage.getItem("email");
+
+
+
+    if (!btn_perfil) {
+        return;
+    }
+
+    if (email == null) {
+        btn_perfil.style.display = "none";
+    }
+
+}
+
+document.addEventListener("DOMContentLoaded", ocultarMiPerfil)
+
+
+
+
+////PEDIDO AGRAGANDOLE UN EVENTO AL BOTON MIS PEDIDOS QUE MUESTRE LOS PEDIDOS DE X USUARIO POR ID
+async function gestionarPedidos() {
+    const credencial = JSON.parse(localStorage.getItem("credenciales"));
+    if (!credencial || !credencial.id) {
+        console.warn("No hay credenciales válidas en localStorage.");
+        return;
+    }
+
+    const userId = credencial.id;
+
+    const btnPedidos = document.querySelector(".btn-mis-pedidos");
+    const contenedorPedidos = document.querySelector(".pedido-info");
+
+    if (btnPedidos) {
+        btnPedidos.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.location.href = "pedido.html";
+        });
+    }
+
+    if (contenedorPedidos) {
+        try {
+
+
+            // 2. Obtener pedidos
+            const response = await fetch(`http://localhost:8081/pedido/obtner/ByUsuario/${userId}`);
+            const pedidos = await response.json();
+
+            if (!Array.isArray(pedidos)) {
+                console.warn("La respuesta de pedidos no es un arreglo:", pedidos);
+                return;
+            }
+
+            contenedorPedidos.innerHTML = "";
+
+            pedidos.forEach(pedido => {
+                let detallesHTML = pedido.detalles.map(detalle => {
+                    console.log(platosDesdeAPI);
+                    console.log("Detalle:", detalle);
+                    // Buscar el plato por ID
+                    const plato = platosDesdeAPI.find(p => p.id === detalle.id_plato);
+                    console.log(plato);
+
+                    console.log("Detalle del pedido:", detalle);
+
+
+
+                    return `
+                        <div class="lista-detalle-contenido">
+                            <div class="lista-detalle-presentacion">
+                                <h4>${plato?.nombre || 'Plato desconocido'}</h4>
+                                <img src="${plato?.imagen || 'img/pizza.jpg'}" alt="${plato?.nombre || ''}" style="width: 300px;">
+                            </div>
+                            <div class="lista-detalle-cantidad">
+                                <label>Cantidad</label>
+                                <input type="text" value="${detalle.cantidad}" readonly>
+                                <label>Precio</label>
+                                <input type="text" value="${Number(pedido.total) / Number(detalle.cantidad)}" readonly>
+                                <label>Sub-total</label>
+                                <input type="text" value="${pedido.total}" readonly>
+                            </div>
+                        </div>
+                    `;
+                }).join("");
+
+                const pedidoHTML = `
+                    <div class="pedido-info-general">
+                        <h3>Información General</h3>
+                        <p><strong>ID del pedido:</strong> <span>${pedido.id}</span></p>
+                        <p><strong>Fecha:</strong> <span>${new Date(pedido.fecha).toLocaleString()}</span></p>
+                        <p><strong>Total:</strong> $<span>${pedido.total}</span></p>
+                    </div>
+                    <div class="lista-detalle">
+                        <h3>Detalles</h3>
+                        ${detallesHTML}
+                    </div>
+                `;
+
+                contenedorPedidos.insertAdjacentHTML("beforeend", pedidoHTML);
+            });
+
+        } catch (error) {
+            console.error("Error al cargar los pedidos:", error);
+        }
+    }
+}
+
+document.addEventListener("DOMContentLoaded", gestionarPedidos);
+
+
+
+
+
+function oculatrVerMisPedidos() {
+
+    const btn_mis_pedidos = document.querySelector(".btn-mis-pedidos");
+
+    if (btn_mis_pedidos == null) {
+        return;
+    }
+
+    const credencial = localStorage.getItem("email")
+
+    if (credencial == null) {
+        btn_mis_pedidos.style.display = "none";
+    } else {
+        btn_mis_pedidos.style.display = "flex";
+    }
+
+
+}
+
+document.addEventListener("DOMContentLoaded", oculatrVerMisPedidos)
+
 
 
 
