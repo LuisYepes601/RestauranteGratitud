@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RestauranteGratitude</title>
+    <link rel="shortcut icon" href="img/logo.jpeg" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+
+
+</head>
+
+<body>
+
+    <div class="grid_container">
+
+        <header class="header">
+            <img src="img/logo.jpeg" alt="" class="header_logo">
+
+            <nav class="header_nav " id="header_nav">
+                <ul class="header_nav_lista " id="header_nav_lista">
+                    <li class="header_nav_lista_items"><a href="index.html" class="btn_home"><i
+                                class="bi bi-house-door-fill"></i>
+                            <p>Home</p>
+                        </a></li>
+
+                    <li class="header_nav_lista_items"><a href=""><i class="bi bi-people-fill"></i>
+                            <p>Sobre
+                                Nosotros</p>
+                        </a></li>
+                    <li class="header_nav_lista_items"><a href=""><i class="bi bi-telephone-fill"></i>
+                            <p>Contáctanos</p>
+                        </a>
+                    </li>
+                    <li class="header_nav_lista_items"><a href=""><i class="bi bi-book-half"></i>
+                            <p>Recetas</p>
+                        </a></li>
+                    <li class="header_nav_lista_items"><a href=""><i class="bi bi-person-circle"></i>
+                            <p>Mi Perfíl</p>
+                        </a></li>
+                </ul>
+
+            </nav>
+            <nav class="header_nav">
+                <ul class="header_nav_lista">
+                    <li class="header_nav_lista_items"><a href="" class="btn-login"><i
+                                class="bi bi-box-arrow-in-right"></i>
+                            <p>Login</p>
+                        </a></li>
+                    <li class="header_nav_lista_items"><a href="" class="btn_mostrar-carrito"><i
+                                class="bi bi-cart-plus-fill"></i>
+                            <p>Carrito</p>
+                        </a>
+                    </li>
+                    <li class="header_nav_lista_items"> <a href=""><i class="bi bi-bag-plus-fill"></i>
+                            <p>Hacer pedido</p>
+                        </a>
+                    </li>
+
+
+                </ul>
+
+
+            </nav>
+
+            <nav class="header_nav_mas_opciones" id="header_nav_mas_opciones">
+                <ul class="header_nav_lista_rol">
+                    <li class="header_nav_lista_items"><a href=""><i class="bi bi-person-circle"></i>
+                            <p>Mi Perfíl</p>
+                        </a></li>
+                    <li class="header_nav_lista_items"><a href=""><i class="bi bi-gear-fill"></i>
+                            <p>Configuración</p>
+                        </a>
+                        <hr class="separador-lista-rol">
+                    </li>
+
+                    <li class="header_nav_lista_items"> <a href="pedido.html" target="_blank"><i
+                                class="bi bi-bag-plus-fill"></i>
+                            <p>Hacer pedido </p>
+                        </a>
+
+                    </li>
+                    <li class="header_nav_lista_items"> <a href=""><i class="bi bi-journal-text"></i>
+                            <p>Historial de pedidos</p>
+                        </a>
+
+                    </li>
+                    <li class="header_nav_lista_items"> <a href=""><i class="bi bi-heart-fill"></i>
+                            <p>Mis Favorítos </p>
+                        </a>
+                        <hr class="separador-lista-rol">
+                    </li>
+                    <li><a href="https://www.instagram.com/yepesmelendez/" target="_blank"><i
+                                class="bi bi-instagram"></i>Instagram</a></li>
+                    <li><a href="https://m.me/luis.yepesmelendez" target="_blank"><i
+                                class="bi bi-facebook"></i>Facebook</a></li>
+                    <li><a href="#"><i class="bi bi-twitter-x" target="_blank"></i>Twitter</a>
+
+                    </li>
+
+                    <li class="header_nav_lista_items">
+                        <hr class="separador-lista-rol"> <a href="" class="btn-logout"><i
+                                class="bi bi-door-closed-fill"></i>
+                            <p>Cerrar Sesión </p>
+                        </a>
+
+                    </li>
+
+
+
+
+
+
+                </ul>
+
+
+            </nav>
+
+
+            <button class="btn_menu_header" id="btn_menu_header" style="cursor: pointer;"> <i
+                    class="bi bi-list"></i></button>
+
+        </header>
+
+        <main class="main">
+
+
+
+            <section class="main-perfil">
+
+                <section class="main-presentacion-perfil">
+                    <h2>Mi Perfil</h2>
+                    <img src="img/perfil.webp" alt="">
+
+                </section>
+
+                <h3>Mis Datos Personales</h3>
+
+                <section class="main-perfil-contenido">
+
+
+
+                    <section class="datos-personales">
+
+                        <div class="datos-personales-contenido">
+                            <label for="name">Nombres</label>
+                            <input type="text" name="name" readonly>
+
+                            <label for="apellido_p">Primer Apellido</label>
+                            <input type="text" name="apellido_p" readonly>
+
+                            <label for="apellido_m">Segundo Apellido</label>
+                            <input type="text" name="apellido_m" readonly>
+
+                            <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                            <input type="date" name="fecha_nacimiento" readonly>
+
+                            <label for="correo">Correo</label>
+                            <input type="email" name="correo" readonly>
+
+                            <label for="telefono">Teléfono / Celular</label>
+                            <input type="tel" name="telefono" readonly>
+
+                            <label for="tipo_de_identificacion">Tipo de Identificación</label>
+                            <input type="text" name="tipo_de_identificacion" readonly>
+
+                        </div>
+
+
+                    </section>
+
+
+                    <div class="datos-personales-contenido">
+
+                        <label for="numero_dni">Número de Identificación</label>
+                        <input type="text" name="numero_dni" readonly>
+
+                        <label for="pais">País</label>
+                        <input type="text" name="pais" readonly>
+
+                        <label for="departamento">Departamento</label>
+                        <input type="text" name="departamento" readonly>
+
+                        <label for="ciudad">Ciudad / Municipio</label>
+                        <input type="text" name="ciudad" readonly>
+
+                        <label for="barrio">Barrio / Localidad</label>
+                        <input type="text" name="barrio" readonly>
+
+
+                        <label for="registro">Fecha de Registro</label>
+                        <input type="date" name="registro" readonly>
+                    </div>
+
+
+
+                </section>
+
+
+            </section>
+
+        </main>
+
+        <footer class="footer">
+            <div class="footer-contenido">
+
+                <div class="footer-logo">
+                    <a href="index.html"><img src="img/logo.jpeg" alt="" class="footer-logo-imagen"></a>
+                    <p class="footer-logo-copy">&copy; 2025 Restaurante Gratitude</p>
+                </div>
+
+                <div class="footer_nav">
+                    <h4 class="footer_nav-titulo">Enlaces rápidos</h4>
+                    <ul>
+                        <li class="footer_nav-enlaces"><a href="#">Inicio<i class="bi bi-house-door-fill"></i></a></li>
+                        <li class="footer_nav-enlaces"><a href="#">Nuestros Platos<i class="bi bi-fork-knife"></i></a>
+                        </li>
+                        <li class="footer_nav-enlaces"><a href="#">Sobre Nosotros<i
+                                    class="bi bi-info-circle-fill"></i></a>
+                        </li>
+                        <li class="footer_nav-enlaces"><a href="#">Contáctanos<i class="bi bi-telephone-fill"></i></a>
+                        </li>
+                        <li class="footer_nav-enlaces"><a href="#">Recetas<i class="bi bi-book-half"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="footer_contacto">
+                    <h4 class="footer-contacto-titulo">Contáctanos</h4>
+                    <ul>
+                        <li class="footer-contacto-enlaces">
+                            <p><i class="bi bi-geo-alt-fill"></i> Calle 123, Ciudad Gourmet</p>
+                        </li>
+                        <li class="footer-contacto-enlaces">
+                            <p><i class="bi bi-telephone-fill"></i> +57 300 123 4567</p>
+                        </li>
+                        <li class="footer-contacto-enlaces"><a target="_blank"
+                                href="https://mail.google.com/mail/?view=cm&fs=1&to=lyepesm@unicartagena.edu.co"><i
+                                    class="bi bi-envelope-fill"></i> contacto@gratitude.com</a></li>
+                        <li class="footer-contacto-enlaces"><a href="https://wa.me/573008998311" target="_blank"><i
+                                    class="bi bi-whatsapp"></i>+57 300 899 8311 </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="footer-redes">
+                    <h4 class="footer-redes-titulo">Visita Nuestras Redes</h4>
+                    <ul>
+                        <li><a href="https://www.instagram.com/yepesmelendez/" target="_blank"><i
+                                    class="bi bi-instagram"></i>Instagram</a></li>
+                        <li><a href="https://m.me/luis.yepesmelendez" target="_blank"><i
+                                    class="bi bi-facebook"></i>Facebook</a></li>
+                        <li><a href="#"><i class="bi bi-twitter-x" target="_blank"></i>Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer_copy">
+                <p>Diseñado con <i class="bi bi-heart-fill"></i> por Luis Yepes Melendez</p>
+            </div>
+        </footer>
+    </div>
+
+
+
+    <section class="carrito-contenedor">
+        <div class="carrito-general-contenido">
+            <div class="carrito-contenedor-presentacion">
+                <h2 class="carrito-contenedor-titulo">Carrito de Compras</h2>
+                <button class="carrito-contenedor-presentacion-btn-salir"><i
+                        class="bi bi-x-circle-fill"></i>Salir</button>
+            </div>
+
+
+            <div class="carrito-contenedor-vacio">
+                <img src="img/carro-vacio.png" alt="" class="carrito-contenedor-vacio-imagen">
+                <h3 class="carrito-contenedor-vacio-titulo"><strong>Tu carrito está vacío... </strong><br>¡es hora de
+                    llenarlo con sabor!</h3>
+            </div>
+
+
+            <div class="carrito-contenedor-pedidos">
+                <button class="carrito-contenedor-pedidos-btn-vaciar">Vaciar carrito</button>
+                <button class="carrito-contenedor-pedidos-btn-realizar-pedido">Realizar Pedido</button>
+            </div>
+
+
+        </div>
+
+    </section>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

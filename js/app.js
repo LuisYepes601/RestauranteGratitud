@@ -38,8 +38,7 @@ const add_car_btn = document.querySelectorAll(".add-car-btn");
 async function cargarPlatosHome() {
 
 
-    fetch("http://localhost:8081/plato/obtenenerPlatos")
-    const response = await fetch("http://localhost:8081/plato/obtenenerPlatos");
+    const response = await fetch("https://restaurantegratitudbackend.onrender.com/plato/obtenenerPlatos");
     const datos = await response.json();
     platosDesdeAPI = datos;
 
@@ -558,8 +557,8 @@ function mostrarCarrito() {
     carrito.style.display = "block";
     carritoDeCompras.forEach(plato => {
         const plato_desde_api = platosDesdeAPI.find(plato_actual => Number(plato_actual.id) === Number(plato.id));
-  
-        
+
+
 
         let producto = `
               <div class="carrito-contenedor-articulo">
@@ -928,7 +927,7 @@ async function caragarDatosUsuarioByID() {
 
 
 
-        const response = await fetch("http://localhost:8081/registrar/get/user/ByiD/" + id_user);
+        const response = await fetch("https://restaurantegratitudbackend.onrender.com/registrar/get/user/ByiD/" + id_user);
         const data = await response.json();
 
         const setInputValue = (selector, value) => {
@@ -1204,6 +1203,7 @@ async function gestionarPedidos() {
 
             contenedorPedidos.innerHTML = "";
 
+
             pedidos.forEach(pedido => {
                 let detallesHTML = pedido.detalles.map(detalle => {
                     console.log(platosDesdeAPI);
@@ -1226,9 +1226,9 @@ async function gestionarPedidos() {
                                 <label>Cantidad</label>
                                 <input type="text" value="${detalle.cantidad}" readonly>
                                 <label>Precio</label>
-                                <input type="text" value="${Number(pedido.total) / Number(detalle.cantidad)}" readonly>
+                                <input type="text" value="${(Number(pedido.total) / Number(detalle.cantidad)) / Number(detalle.cantidad)}" readonly>
                                 <label>Sub-total</label>
-                                <input type="text" value="${pedido.total}" readonly>
+                                <input type="text" value="${Number(pedido.total) / Number(detalle.cantidad)}" readonly>
                             </div>
                         </div>
                     `;
