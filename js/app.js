@@ -927,7 +927,7 @@ async function caragarDatosUsuarioByID() {
 
 
 
-        const response = await fetch("https://restaurantegratitudbackend.onrender.com/registrar/get/user/ByiD/" + id_user);
+        const response = await fetch("https://restaurantegratitudbackend.onrender.com/registrar/get/user/ByiD/"+ id_user);
         const data = await response.json();
 
         const setInputValue = (selector, value) => {
@@ -957,7 +957,6 @@ async function caragarDatosUsuarioByID() {
 document.addEventListener("DOMContentLoaded", caragarDatosUsuarioByID);
 
 
-
 function IniciarSesion() {
     const btn_enviar = document.querySelector(".main-login-btn-entrar");
     const email = document.querySelector(".inp-email");
@@ -977,7 +976,7 @@ function IniciarSesion() {
                 password: contraseña.value
             };
 
-            const response = await fetch("http://localhost:8081/login/verificarCredenciales", {
+            const response = await fetch("https://restaurantegratitudbackend.onrender.com/login/verificarCredenciales", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -1052,7 +1051,7 @@ async function registrarUsuario() {
             };
 
             try {
-                const response = await fetch("http://localhost:8081/registrar/usuario", {
+                const response = await fetch("https://restaurantegratitudbackend.onrender.com/registrar/usuario", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -1193,7 +1192,7 @@ async function gestionarPedidos() {
 
 
             // 2. Obtener pedidos
-            const response = await fetch(`http://localhost:8081/pedido/obtner/ByUsuario/${userId}`);
+            const response = await fetch(`https://restaurantegratitudbackend.onrender.com/pedido/obtner/ByUsuario/${userId}`);
             const pedidos = await response.json();
 
             if (!Array.isArray(pedidos)) {

@@ -1344,7 +1344,9 @@ PERFIL
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    gap: 2.5rem;
+    gap: 3rem;
+    margin-top: 2rem;
+    padding: 2rem 0;
 }
 
 .mision,
@@ -1405,7 +1407,7 @@ PERFIL
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
-    
+
 }
 
 .testimonios h3 {
@@ -1414,4 +1416,164 @@ PERFIL
     background-color: #008a00;
     padding: 1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.ubicacion {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+/*CONTACTANOS*/
+
+.main-contactanos {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 3rem;
+}
+
+.main-contactanos h1 {
+    color: white;
+    background-color: #008a00;
+    width: 100%;
+    padding: 1.3rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.main-contactanos-contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+
+}
+
+.direccion,
+.telefono,
+.email,
+.horarios-atencion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d6d6d6;
+    gap: 2rem;
+    padding: 1rem;
+    width: 80%;
+    border-radius: 15px;
+    transition: color.5s, background .5s, transform .5s;
+    cursor: pointer;
+
+}
+
+.direccion:hover,
+.telefono:hover,
+.email:hover,
+.horarios-atencion:hover {
+    background-color: #008a00;
+    color: white;
+    transform: scale(1.05);
+}
+
+.redes-sociales {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.redes-sociales h2 {
+    width: 100%;
+    background-color: #008a00;
+    color: white;
+    padding: 1rem;
+    margin-top: 3rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.redes-sociales-contenido {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 2.7rem;
+
+}
+
+.redes-sociales-contenido a {
+    color: #4d4143;
+    transition: color .5s, transfor .5s;
+}
+
+.redes-sociales-contenido a:hover {
+
+    color: #008a00;
+    transform: scale(.9);
+
+}
+
+/*
+RECETAS
+*/
+
+.main-recetas {
+    padding: 60px 20px;
+    background-color: #fefefe;
+}
+
+.contenedor-recetas {
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+}
+.contenedor-recetas h2{
+
+    color: white;
+    background-color: #008a00;
+    padding: 1rem;
+    margin: 2rem 0;
+}
+.recetas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.receta-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.receta-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.receta-card img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.receta-card h3 {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #008a00
+
+}
+
+.receta-card p {
+    font-size: 14px;
+    color: #555;
+    text-align: left;
+    margin-top: 1rem;
 }
