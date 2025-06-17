@@ -43,7 +43,7 @@ async function cargarPlatosHome() {
     platosDesdeAPI = datos;
 
 
-
+    localStorage.setItem("platos", JSON.stringify(platosDesdeAPI))
 
 
 
@@ -382,11 +382,7 @@ function agregarCarrito() {
 
 
 
-
-
-
-
-
+ocultarBotonHacerPedido();
 
 
 
@@ -438,6 +434,7 @@ function agregarCarrito() {
             }
 
             mostrarCarrito();
+            ocultarBotonHacerPedido();
 
         });
     });
@@ -484,6 +481,7 @@ function agregarCarrito() {
 
 
         }
+        ocultarBotonHacerPedido();
     });
 
 
@@ -800,6 +798,8 @@ function vaciarCarrito() {
             }
         }, 0);
 
+        ocultarBotonHacerPedido();
+
 
     });
 
@@ -946,6 +946,9 @@ function IniciarSesion() {
     const btn_enviar = document.querySelector(".main-login-btn-entrar");
     const email = document.querySelector(".inp-email");
     const contraseña = document.querySelector(".inp-contraseña");
+
+    console.log(JSON.parse(localStorage.getItem("credenciales")));
+
 
     // Verificamos que los elementos existan
     if (!btn_enviar || !email || !contraseña) {
@@ -1186,15 +1189,18 @@ async function gestionarPedidos() {
             }
 
             contenedorPedidos.innerHTML = "";
+            console.log("pedidos;;;", pedidos);
+
+            const platos = JSON.parse(localStorage.getItem("platos") || "[]");
 
 
             pedidos.forEach(pedido => {
                 let detallesHTML = pedido.detalles.map(detalle => {
-                    console.log(platosDesdeAPI);
+                    console.log(platos);
                     console.log("Detalle:", detalle);
                     // Buscar el plato por ID
-                    const plato = platosDesdeAPI.find(p => p.id === detalle.id_plato);
-                    console.log(plato);
+                    const plato = platos.find(p => Number(p.id) === Number(detalle.id_plato));
+                    console.log("este ed de api", plato);
 
                     console.log("Detalle del pedido:", detalle);
 
@@ -1204,15 +1210,15 @@ async function gestionarPedidos() {
                         <div class="lista-detalle-contenido">
                             <div class="lista-detalle-presentacion">
                                 <h4>${plato?.nombre || 'Plato desconocido'}</h4>
-                                <img src="${plato?.imagen || 'img/pizza.jpg'}" alt="${plato?.nombre || ''}" style="width: 300px;">
+                                <img src="${plato.imagen}" alt="${plato?.nombre || ''}" style="width: 300px;">
                             </div>
                             <div class="lista-detalle-cantidad">
                                 <label>Cantidad</label>
                                 <input type="text" value="${detalle.cantidad}" readonly>
                                 <label>Precio</label>
-                                <input type="text" value="${(Number(pedido.total) / Number(detalle.cantidad)) / Number(detalle.cantidad)}" readonly>
+                                <input type="text" value="${plato.precio}" readonly>
                                 <label>Sub-total</label>
-                                <input type="text" value="${Number(pedido.total) / Number(detalle.cantidad)}" readonly>
+                                <input type="text" value="${plato.precio * detalle.cantidad}" readonly>
                             </div>
                         </div>
                     `;
@@ -1223,7 +1229,7 @@ async function gestionarPedidos() {
                         <h3>Información General</h3>
                         <p><strong>ID del pedido:</strong> <span>${pedido.id}</span></p>
                         <p><strong>Fecha:</strong> <span>${new Date(pedido.fecha).toLocaleString()}</span></p>
-                        <p><strong>Total:</strong> $<span>${pedido.total}</span></p>
+                        <p class="total-pagado"><strong>Total Pagado:</strong> $<span>${pedido.total}</span></p>
                     </div>
                     <div class="lista-detalle">
                         <h3>Detalles</h3>
@@ -1338,6 +1344,72 @@ function mostrarResumenPedido() {
 
     // Mostrar el total final
     totalPedido.textContent = `Total: $${total.toLocaleString()}`;
+
+
+
+    document.querySelector(".boton-confirmar").addEventListener("click", confirmarPedido);
+
+
+    function confirmarPedido() {
+        const credencialUser = JSON.parse(localStorage.getItem("credenciales"));
+        const carrito = JSON.parse(localStorage.getItem("carrito") || "[]");
+        const platos = JSON.parse(localStorage.getItem("platos") || "[]");
+
+        if (!credencialUser || carrito.length === 0) {
+            alert("Usuario no identificado o carrito vacío.");
+            return;
+        }
+
+        const confirmar = window.confirm("¿Estás seguro de que deseas confirmar el pedido?");
+
+        if (!confirmar) {
+            return; // Si el usuario cancela, no se hace nada
+        }
+
+
+        const detalles = carrito.map(item => {
+            const plato = platos.find(p => Number(p.id) === Number(item.id));
+            return {
+                id: item.id,
+                cantidad: item.cantidad,
+                precio: plato ? plato.precio : 0
+            };
+        });
+
+        console.log("credenciales user", credencialUser);
+        console.log(credencialUser.id);
+
+
+        const pedido = {
+            usuarioId: Number(credencialUser.id),
+            detalles: detalles
+        };
+
+        console.log("Pedido a enviar:", pedido); // para debug
+
+        // Enviar el pedido al backend
+        fetch("https://restaurantegratitudbackend.onrender.com/pedido/crear", {  // <-- cambia esta URL si es distinta
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(pedido)
+        })
+            .then(response => {
+                if (!response.ok) throw new Error("Error al enviar el pedido");
+                return response.json();
+            })
+            .then(data => {
+
+                localStorage.removeItem("carrito"); // Limpia el carrito
+                window.location.href = "info_pedido.html"; // o recarga, o redirige a una página de agradecimiento
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Hubo un problema al procesar el pedido.");
+            });
+    }
+
 }
 document.addEventListener("DOMContentLoaded", () => {
     const ruta = window.location.pathname;
@@ -1345,6 +1417,47 @@ document.addEventListener("DOMContentLoaded", () => {
         mostrarResumenPedido();
     }
 });
+
+function RealizarPedidoBtn() {
+    const btn_realizar_pedido = document.querySelector(".header_nav_mas_opciones-btn-realizar-pedido");
+
+    if (!btn_realizar_pedido) return;
+
+    btn_realizar_pedido.addEventListener("click", (e) => {
+        e.preventDefault();
+        // Redirige a la página donde mostrarResumenPedido se ejecuta automáticamente
+        window.location.href = "detalleCompra.html";
+    });
+}
+
+document.addEventListener("DOMContentLoaded", RealizarPedidoBtn);
+
+
+
+function ocultarBotonHacerPedido() {
+
+    const btn_hacer_pedido = document.querySelectorAll(".header_nav_mas_opciones-btn-realizar-pedido");
+
+    if (btn_hacer_pedido == null) {
+        return;
+    }
+
+    carrito = JSON.parse(localStorage.getItem("carrito"))
+
+    btn_hacer_pedido.forEach(element => {
+        if (carrito == null) {
+            element.style.display = "none";
+        } else {
+            element.style.display = "flex";
+        }
+    });
+
+
+}
+
+document.addEventListener("DOMContentLoaded", ocultarBotonHacerPedido)
+
+
 
 
 

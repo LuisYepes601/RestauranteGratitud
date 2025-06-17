@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RestauranteGratitude</title>
+    <title>Pedido Confirmado</title>
     <link rel="shortcut icon" href="img/logo.jpeg" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -27,129 +27,37 @@
 
             <nav class="header_nav " id="header_nav">
                 <ul class="header_nav_lista " id="header_nav_lista">
-                    <li class="header_nav_lista_items"><a href="index.html" class="btn_home"><i
-                                class="bi bi-house-door-fill"></i>
+                    <li class="header_nav_lista_items"><a href="index.html" class="btn_home"><i class="bi bi-house-door-fill"></i>
                             <p>Home</p>
                         </a></li>
 
-                    <li class="header_nav_lista_items"><a href=""><i class="bi bi-people-fill"></i>
-                            <p>Sobre
-                                Nosotros</p>
-                        </a></li>
-                    <li class="header_nav_lista_items"><a href=""><i class="bi bi-telephone-fill"></i>
-                            <p>Contáctanos</p>
-                        </a>
-                    </li>
-                    <li class="header_nav_lista_items"><a href=""><i class="bi bi-book-half"></i>
-                            <p>Recetas</p>
-                        </a></li>
-                    <li class="header_nav_lista_items"><a href=""><i class="bi bi-person-circle"></i>
-                            <p>Mi Perfíl</p>
-                        </a></li>
                 </ul>
 
             </nav>
-            <nav class="header_nav">
-                <ul class="header_nav_lista">
-                    <li class="header_nav_lista_items"><a href=""><i class="bi bi-box-arrow-in-right"></i>
-                            <p>Login</p>
-                        </a></li>
-                    <li class="header_nav_lista_items"><a href="" class="btn_mostrar-carrito"><i
-                                class="bi bi-cart-plus-fill"></i>
-                            <p>Carrito</p>
-                        </a>
-                    </li>
-                    <li class="header_nav_lista_items"> <a href="" class="header_nav_mas_opciones-btn-realizar-pedido"><i class="bi bi-bag-plus-fill"></i>
-                            <p>Hacer pedido</p>
-                        </a>
-                    </li>
-
-
-                </ul>
-
-
-            </nav>
-
-            <nav class="header_nav_mas_opciones" id="header_nav_mas_opciones">
-                <ul class="header_nav_lista_rol">
-                    <li class="header_nav_lista_items"><a href=""><i class="bi bi-person-circle"></i>
-                            <p>Mi Perfíl</p>
-                        </a></li>
-                    <li class="header_nav_lista_items"><a href=""><i class="bi bi-gear-fill"></i>
-                            <p>Configuración</p>
-                        </a>
-                        <hr class="separador-lista-rol">
-                    </li>
-
-                    <li class="header_nav_lista_items"> <a  class="header_nav_mas_opciones-btn-realizar-pedido"  target="_blank"><i
-                                class="bi bi-bag-plus-fill"></i>
-                            <p>Hacer pedido </p>
-                        </a>
-
-                    </li>
-                    <li class="header_nav_lista_items"> <a href=""><i class="bi bi-journal-text"></i>
-                            <p>Historial de pedidos</p>
-                        </a>
-
-                    </li>
-                    <li class="header_nav_lista_items"> <a href=""><i class="bi bi-heart-fill"></i>
-                            <p>Mis Favorítos </p>
-                        </a>
-                        <hr class="separador-lista-rol">
-                    </li>
-                    <li><a href="https://www.instagram.com/yepesmelendez/" target="_blank"><i
-                                class="bi bi-instagram"></i>Instagram</a></li>
-                    <li><a href="https://m.me/luis.yepesmelendez" target="_blank"><i
-                                class="bi bi-facebook"></i>Facebook</a></li>
-                    <li><a href="#"><i class="bi bi-twitter-x" target="_blank"></i>Twitter</a>
-
-                    </li>
-
-                    <li class="header_nav_lista_items">
-                        <hr class="separador-lista-rol"> <a href="" class="btn-logout"><i class="bi bi-door-closed-fill"></i>
-                            <p>Cerrar Sesión </p>
-                        </a>
-
-                    </li>
 
 
 
 
 
-
-                </ul>
-
-
-            </nav>
-
-
-            <button class="btn_menu_header" id="btn_menu_header" style="cursor: pointer;"> <i
-                    class="bi bi-list"></i></button>
 
         </header>
 
         <main class="main">
 
+            <section class="main-info-pedido">
+                <h1>¡Gracias por tu pedido!</h1>
+                <p>Tu pedido fue registrado con éxito.</p>
+                <div class="info">
+                    <p><strong>📍 Puedes recogerlo en:</strong> Calle 45 #12-34, El Carmen de Bolívar</p>
+                    <p><strong>🕒 Horario de atención:</strong> Lunes a Sábado - 8:00 a.m. a 7:00 p.m.</p>
+                    
+                </div>
+                <button onclick="window.location.href='index.html'" class="seguir-comprando">Seguir Comprando</button>
+            </section>
 
-            <section class="main-login">
-                <h2 class="main-login-titulo">Inciciar Sesión</h2>
+        </main>
 
-                <form id="formLogin">
-                    <input type="email" id="email" placeholder="Correo electrónico" required class="inp-email">
-                    <input type="password" id="password" placeholder="Contraseña" required class="inp-contraseña">
-                    <button type="submit" class="main-login-btn-entrar">Entrar</button>
-                    <p class="mensaje-registro">¿No tienes una cuenta? <a href="registro.html"><i
-                                class="bi bi-arrow-right-circle"></i>Regístrate aquí</a></p>
-                </form>
-
-                <p id="mensaje-error" style="color: red; display: none;">Credenciales incorrectas</p>
-    </div>
-
-    </section>
-
-    </main>
-
-     <footer class="footer">
+        <footer class="footer">
             <div class="footer-contenido">
 
                 <div class="footer-logo">
@@ -234,10 +142,12 @@
         </div>
 
     </section>
-    
 
-    
+    <section class="wpp-flotante">
+        <a href=""><img src="" alt=""></a>
+    </section>
     <script src="js/app.js"></script>
+
 </body>
 
 </html>
