@@ -632,7 +632,7 @@ function mostrarCarrito() {
     }, 100);
 
 
-    realizarPedido();
+
     salirCarrito();
     vaciarCarrito();
 
@@ -808,22 +808,7 @@ function vaciarCarrito() {
 
 }
 
-function realizarPedido() {
 
-    const btn_realizar_pedido = document.querySelector(".carrito-contenedor-pedidos-btn-realizar-pedido");
-
-    btn_realizar_pedido.addEventListener("click", () => {
-        carritoDeCompras.forEach(plato => {
-            console.log(plato);
-
-        });
-
-
-        window.location.href = "pedido.html";
-
-    })
-
-}
 
 /**
  * REGISTRO
@@ -927,7 +912,7 @@ async function caragarDatosUsuarioByID() {
 
 
 
-        const response = await fetch("https://restaurantegratitudbackend.onrender.com/registrar/get/user/ByiD/"+ id_user);
+        const response = await fetch("https://restaurantegratitudbackend.onrender.com/registrar/get/user/ByiD/" + id_user);
         const data = await response.json();
 
         const setInputValue = (selector, value) => {
@@ -1283,6 +1268,83 @@ function oculatrVerMisPedidos() {
 document.addEventListener("DOMContentLoaded", oculatrVerMisPedidos)
 
 
+
+
+
+/**
+ * PEDIDO REALIZAR
+ */
+
+
+
+
+
+document.addEventListener('click', function (e) {
+    if (e.target.closest('.carrito-contenedor-pedidos-btn-realizar-pedido')) {
+        window.location.href = 'detalleCompra.html';
+
+    }
+});
+
+const ruta = window.location.pathname;
+
+if (ruta.includes("detalleCompra.html")) {
+    console.log("estoy en detalle pedio");
+
+}
+
+function mostrarResumenPedido() {
+    const carrito = JSON.parse(localStorage.getItem("carrito") || "[]");
+    const platos = JSON.parse(localStorage.getItem("platos") || "[]");
+    console.log(carrito);
+    console.log(platos);
+
+
+
+    const contenedor = document.getElementById("contenedorProductos");
+    const totalPedido = document.getElementById("totalPedido");
+    let contador = 0;
+
+    if (!contenedor || !totalPedido) return;
+
+    let total = 0;
+    contenedor.innerHTML = ""; // Limpia contenido anterior
+
+    carrito.forEach(item => {
+        const plato = platos.find(p => Number(p.id) === Number(item.id));
+        if (!plato) return;
+
+
+        const subtotal = item.cantidad * plato.precio;
+        total += subtotal;
+        contador += 1;
+
+        const productoHTML = `
+      <div class="producto">
+        <p class="producto-item">Item Número: ${contador}</p>
+        <div class="producto-info">
+          <p class="producto-nombre">${plato.nombre}</p>
+          <img src="${plato.imagen}" alt="${plato.nombre}">
+        </div>
+        <div class="producto-total">
+          <p class="producto-detalles">Cantidad: ${item.cantidad} • <span>$ ${plato.precio.toLocaleString()} c/u</span></p>
+          <p class="sub-total">Sub-total: <span>$ ${subtotal.toLocaleString()}</span></p>
+        </div>
+      </div>
+    `;
+
+        contenedor.innerHTML += productoHTML;
+    });
+
+    // Mostrar el total final
+    totalPedido.textContent = `Total: $${total.toLocaleString()}`;
+}
+document.addEventListener("DOMContentLoaded", () => {
+    const ruta = window.location.pathname;
+    if (ruta.includes("detalleCompra.html")) {
+        mostrarResumenPedido();
+    }
+});
 
 
 

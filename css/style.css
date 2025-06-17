@@ -1529,13 +1529,15 @@ RECETAS
     margin: auto;
     text-align: center;
 }
-.contenedor-recetas h2{
+
+.contenedor-recetas h2 {
 
     color: white;
     background-color: #008a00;
     padding: 1rem;
     margin: 2rem 0;
 }
+
 .recetas-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1559,7 +1561,9 @@ RECETAS
 }
 
 .receta-card img {
-    width: 100%;
+    width: 300px;
+    max-width: 100%;
+    height: 35vh;
     border-radius: 12px;
     margin-bottom: 15px;
 }
@@ -1568,7 +1572,6 @@ RECETAS
     font-size: 20px;
     margin: 10px 0;
     color: #008a00
-
 }
 
 .receta-card p {
@@ -1576,4 +1579,114 @@ RECETAS
     color: #555;
     text-align: left;
     margin-top: 1rem;
+
+}
+
+
+
+/**realizar pedido*/
+.main-detalle-compra {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    gap: 3rem;
+}
+
+.main-detalle-compra h2 {
+
+    text-align: center;
+    color: white;
+    width: 100%;
+    background-color: #008a00;
+    padding: 1rem;
+}
+
+.contenedor-productos {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.producto {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    width: 100%;
+    padding: 2rem;
+    border: 1px solid #008a00;
+    border-radius: 20px;
+}
+
+.producto-item {
+
+    color: #008a00;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.producto-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.producto-info img {
+
+    width: 130px;
+    max-width: 100%;
+}
+
+.producto-total {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.producto-total span {
+    color: #008a00;
+    font-weight: 700;
+}
+
+.total {
+    color: #008a00;
+    font-weight: 700;
+    font-size: 1.1rem;
+
+}
+
+.total-final {
+    color: #008a00;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.boton-confirmar {
+
+    width: 30%;
+    padding: 1rem;
+    border-radius: 20px;
+    background-color: white;
+    border: 1px solid #008a00;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #4b4949;
+    transition: transform .5s, background .5s, color .5s;
+
+}
+
+.boton-confirmar:hover {
+    background-color: #008a00;
+    transform: scale(.9);
+    color: white;
+
 }

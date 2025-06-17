@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RestauranteGratitude</title>
+    <title>Resumen del Pedido</title>
     <link rel="shortcut icon" href="img/logo.jpeg" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -27,27 +27,23 @@
 
             <nav class="header_nav " id="header_nav">
                 <ul class="header_nav_lista " id="header_nav_lista">
-                    <li class="header_nav_lista_items"><a href="index.html" class="btn_home"><i class="bi bi-house-door-fill"></i>
+                    <li class="header_nav_lista_items"><a href="index.html" class="btn_home"><i
+                                class="bi bi-house-door-fill"></i>
                             <p>Home</p>
                         </a></li>
-                    <li class="header_nav_lista_items"><a href="" id="btn_mostrarPlatos"><i
-                                class="bi bi-fork-knife"></i>
-                            <p>Nuestros Platos</p>
-                        </a>
-                    </li>
-                    <li class="header_nav_lista_items"><a href="sobre_nosotros.html"><i class="bi bi-people-fill"></i>
+
+                    <li class="header_nav_lista_items"><a href=""><i class="bi bi-people-fill"></i>
                             <p>Sobre
                                 Nosotros</p>
                         </a></li>
-                    <li class="header_nav_lista_items"><a href="contactanos.html"><i class="bi bi-telephone-fill"></i>
+                    <li class="header_nav_lista_items"><a href=""><i class="bi bi-telephone-fill"></i>
                             <p>Contáctanos</p>
                         </a>
                     </li>
-                    <li class="header_nav_lista_items"><a href="recetas.html"><i class="bi bi-book-half"></i>
+                    <li class="header_nav_lista_items"><a href=""><i class="bi bi-book-half"></i>
                             <p>Recetas</p>
                         </a></li>
-                    <li class="header_nav_lista_items"><a href="perfil.html" class="btn-perfil"><i
-                                class="bi bi-person-circle"></i>
+                    <li class="header_nav_lista_items"><a href=""><i class="bi bi-person-circle"></i>
                             <p>Mi Perfíl</p>
                         </a></li>
                 </ul>
@@ -55,7 +51,7 @@
             </nav>
             <nav class="header_nav">
                 <ul class="header_nav_lista">
-                    <li class="header_nav_lista_items"><a href="login.html" class="btn-login"><i
+                    <li class="header_nav_lista_items"><a href="" class="btn-login"><i
                                 class="bi bi-box-arrow-in-right"></i>
                             <p>Login</p>
                         </a></li>
@@ -86,13 +82,13 @@
                         <hr class="separador-lista-rol">
                     </li>
 
-                    <li class="header_nav_lista_items"> <a href=""><i class="bi bi-bag-plus-fill"></i>
-                            <p>Hacer pedido</p>
+                    <li class="header_nav_lista_items"> <a href="pedido.html" target="_blank"><i
+                                class="bi bi-bag-plus-fill"></i>
+                            <p>Hacer pedido </p>
                         </a>
 
                     </li>
-                    <li class="header_nav_lista_items"> <a href="" class="btn-mis-pedidos"><i
-                                class="bi bi-journal-text"></i>
+                    <li class="header_nav_lista_items"> <a href=""><i class="bi bi-journal-text"></i>
                             <p>Historial de pedidos</p>
                         </a>
 
@@ -136,37 +132,47 @@
 
         <main class="main">
 
-            <section class="main-contactanos">
-                <h1>Contáctanos</h1>
-                <div class="main-contactanos-contenido">
-                    <div class="direccion">
+            <section class="main-detalle-compra">
 
-                        <h3><i class="bi bi-geo-alt-fill"></i> Dirección</h3>
-                        <p>Carrera 50, El Carmen de Bolívar, Bolívar</p>
-                    </div>
-                    <div class="telefono">
-                        <h3><i class="bi bi-telephone-fill"></i> Teléfono</h3>
-                        <p>+57 300 123 4567</p>
-                    </div>
-                    <div class="email">
-                        <h3><i class="bi bi-envelope-fill"></i> Correo Electrónico</h3>
-                    
-                    <p>contacto@gratitude.com</p>
-                    </div>
-                    <div class="horarios-atencion">
-                        <h3><i class="bi bi-clock-fill"></i> Horarios de Atención</h3>
-                        <p>Lunes a Domingo: 11:00 a.m. - 9:00 p.m.</p>
-                    </div>
+                <h2>Resumen de tu pedido</h2>
 
-                        <div class="redes-sociales">
-                            <h2>Visita Nuestras Redes Sociales</h2>
-                            <div class="redes-sociales-contenido">
-                            <a href="#"><i class="bi bi-facebook"></i></a>
-                            <a href="https://www.instagram.com/yepesmelendez/" target="_blank"><i class="bi bi-instagram"></i></a>
-                            <a href="https://wa.me/573008998311" target="_blank"><i class="bi bi-whatsapp" ></i></a>
-                            </div>
+                <!-- Aquí se insertarán los productos con JavaScript -->
+                <div class="contenedor-productos" id="contenedorProductos">
+
+                    <div class="producto">
+                        <p class="producto-item">Item Número:</p>
+                        <div class="producto-info">
+                            <p class="producto-nombre">Hamburguesa Clásica</p>
+                            <img src="img/hamburguesa.jpg" alt="">
+
+                        </div>
+                        <div class="producto-total">
+                            <p class="producto-detalles">Cantidad: 2 • <span>$ 15.000 c/u</span></p>
+                            <p class="sub-total">Sub-total: <span>$ 30000</span> </p>
+                            <p class="total">Total: 30000</p>
                         </div>
                     </div>
+
+                     <div class="producto">
+                        <p class="producto-item">Item Número:</p>
+                        <div class="producto-info">
+                            <p class="producto-nombre">Hamburguesa Clásica</p>
+                            <img src="img/hamburguesa.jpg" alt="">
+
+                        </div>
+                        <div class="producto-total">
+                            <p class="producto-detalles">Cantidad: 2 • <span>$ 15.000 c/u</span></p>
+                            <p class="sub-total">Sub-total: <span>$ 30000</span> </p>
+                            <p class="total">Total: 30000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Total final del pedido -->
+                <div class="total-final" id="totalPedido">Total: $0</div>
+
+                <!-- Botón para confirmar el pedido -->
+                <button class="boton-confirmar">¿Estás seguro de realizar el pedido?</button>
             </section>
 
         </main>
@@ -257,11 +263,9 @@
 
     </section>
 
-    <section class="wpp-flotante">
-        <a href=""><img src="" alt=""></a>
-    </section>
-    <script src="js/app.js"></script>
 
+
+    <script src="js/app.js"></script>
 </body>
 
 </html>
